@@ -26,9 +26,8 @@ module.exports = function (sequelize, DataTypes) {
     },
     yeargroup: DataTypes.INTEGER,
     userType: {
-
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     }
 
   });
