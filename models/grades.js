@@ -9,10 +9,24 @@ module.exports = function(sequelize, DataTypes) {
               type: DataTypes.INTEGER,
               allowNull: false,
 
-          }
+          },
+          homeworkId:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+
+        }
+
     });
     Grades.associate = function(models) {
         Grades.belongsTo(models.Course, {
+          foreignKey: {
+            allowNull: false
+          }
+        });
+      };
+
+      Grades.associate = function(models) {
+        Grades.hasOne(models.Homework, {
           foreignKey: {
             allowNull: false
           }
