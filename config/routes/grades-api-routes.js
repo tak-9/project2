@@ -9,7 +9,7 @@ module.exports = function(app) {
     app.get("/api/grades/:homeworkid", function(req, res) {
         var query = {};
         if (req.params.homeworkId) {
-          query.homeworkId = req.query.homeworkId;
+          query.homeworkId = req.params.homeworkId;
         }
         console.log("req.query "+JSON.stringify(req.query))
         db.Grades.findAll({
@@ -38,7 +38,7 @@ module.exports = function(app) {
       app.get("/api/grades/:studentid", function(req, res) {
         var query = {};
         if (req.params.studentId) {
-          query.studentId = req.query.studentId;
+          query.studentId = req.params.studentId;
         }
         console.log("req.query "+JSON.stringify(req.query))
         db.Enrolment.findAll({
