@@ -16,7 +16,6 @@ module.exports = function (app) {
         res.status(401).json(err);
       });
   });
-
   //put route for the student to update his details 
   app.put("/api/signup", function (req, res) {
     db.User.update(
@@ -32,7 +31,7 @@ module.exports = function (app) {
       });
   });
 
-  app.get("/logout", function(req, res) {
+  app.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/");
   });

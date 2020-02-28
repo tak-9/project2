@@ -8,17 +8,17 @@ module.exports = function (app) {
   // home pages (login page)
   app.get("/", function (req, res) {
     console.log("app.get / req ", req.User);
-      if (req.User.userType === "student") {
-        res.redirect("/student");
-      } else if (req.User.userType === "staff") {
-        res.redirect("/staff");
-      
+    if (req.User.userType === "student") {
+      res.redirect("/student");
+    } else if (req.User.userType === "staff") {
+      res.redirect("/staff");
+
     } else {
       res.sendFile(path.join(__dirname, "../public/home.html"));
     }
   });
 
-  app.get("/login", function(req, res) {
+  app.get("/login", function (req, res) {
     if (req.User.userType === "student") {
       res.redirect("/student");
     } else if (req.User.userType === "staff") {
