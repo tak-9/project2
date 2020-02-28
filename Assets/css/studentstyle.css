@@ -1,0 +1,18 @@
+.show {
+    display: block; 
+}
+
+.hide {
+    display: none; 
+}
+.logout {
+    position: relative;
+    float: right; 
+  
+}
+.StudentDetailsTable{
+    width: 750px;
+}
+
+
+
