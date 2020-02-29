@@ -1,0 +1,225 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="field is-grouped logout">
+        <div class="control">
+          <button class="button">Logout</button>
+        </div>
+      </div>
+      <h1 class="title">
+        Proficiency Education
+      </h1>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="columns">
+    <div class="column is-one-quarter">
+      <aside class="menu">
+        <p class="menu-label">
+          Staff Menu
+        </p>
+        <ul class="menu-list">
+          <li><a id="viewStudentBtn">View student details</a></li>
+          <li><a id="viewQuizResultsBtn">View past quiz results</a></li>
+          <li><a id="enterQuizResultsBtn">Enter quiz results</a></li>
+        </ul>
+
+      </aside>
+
+
+    </div>
+    <div id="viewQuizResults" class="column is-three-quarter show">
+
+
+      <span class="select">
+        <select class="selectClasses">
+          <option>Classes</option>
+          <option>Tuesday Year 11 2U</option>
+          {{#each class}}
+          <option>
+            {{classes}}
+          </option>
+          {{/each}}
+        </select>
+      </span>
+
+
+
+
+      <span class="select">
+        <select class="selectClasses">
+          <option>Week</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+      </span>
+
+
+
+      <br>
+      <br>
+      <table class="table">
+
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Student Name</th>
+            <th>Marks</th>
+            <th>Full Marks</th>
+          </tr>
+        </thead>
+        {{#each student}}
+        <tr>
+          <td>{{id}}</td>
+          <td>{{firstName}} {{lastName}}</td>
+          <td>{{quizMarks}}</td>
+          <td>{{fullMarks}}</td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
+
+
+    <div id="enterQuizResults" class="column is-three-quarter hide">
+      <span class="select">
+        <select class="selectClasses">
+          <option>Classes</option>
+          <option>Tuesday Year 11 2U</option>
+          {{#each class}}
+          <option>
+            {{classes}}
+          </option>
+          {{/each}}
+        </select>
+      </span>
+
+
+
+      <span class="select">
+        <select class="selectWeek">
+          <option>Week</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+      </span>
+
+
+
+      <br>
+      <br>
+      <table class="table">
+
+        <thead>
+          <tr>
+            <th>Week</th>
+            <th>Student Name</th>
+            <th>Marks</th>
+            <th>Full Marks</th>
+          </tr>
+        </thead>
+
+        {{#each student}}
+        <tr>
+          <td>{{id}}</td>
+          <td>{{firstName}} {{lastName}}</td>
+          <td>
+            <input class="quizMarksInput" type="text" placeholder="student marks">
+          </td>
+          <td>
+            <input class="fullMarksInput" type="text" placeholder="quiz is out of:">
+          </td>
+        </tr>
+        {{/each}}
+
+
+      </table>
+      <button class="button is-link">Save results</button>
+      <button class="button is-danger">Send results to parents</button>
+    </div>
+
+    <div id="StudentDetails" class="container hide">
+      <div class="column is-three-quarters">
+
+        <div class="field has-addons">
+          <p class="control">
+            <span class="select">
+              <select>
+                <option>Last Name</option>
+                <option>School</option>
+                <option>Year</option>
+                <option>Mobile</option>
+              </select>
+            </span>
+          </p>
+          <p class="control">
+            <input class="input" type="text" placeholder="Find a student">
+          </p>
+          <p class="control">
+            <a class="button is-link">
+              Search
+            </a>
+          </p>
+        </div>
+
+        <br>
+        <div class="table-container">
+          <table class="table is-hoverable is-striped is-narrow">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Mobile</th>
+                <th>School</th>
+                <th>Year</th>
+                <th>Email</th>
+                <th>Guardian First Name</th>
+                <th>Guardian Last Name</th>
+                <th>Guardian Mobile</th>
+                <th>Guardian Email</th>
+                <th>Street Address</th>
+                <th>Suburb</th>
+                <th>D.O.B</th>
+                <th>Date Enrolled</th>
+              </tr>
+            </thead>
+
+
+
+            {{#each student}}
+            <tr>
+              <td>{{id}}</td>
+              <td>{{lastName}}</td>
+              <td>{{firstName}}</td>
+              <td>{{mobile}}</td>
+              <td>{{school}}</td>
+              <td>{{year}}</td>
+              <td>{{email}}</td>
+              <td>{{guardianFirstName}}</td>
+               <td>{{guardianLastName}}</td>
+               <td>{{guardianMobile}}</td>
+               <td>{{guardianEmail}}</td>
+               <td>{{streetAddress}}</td>
+               <td>{{suburb}}</td>
+               <td>{{dob}}</td>
+               <td>{{dateEnrolled}}</td>
+
+            </tr>
+            {{/each}}
+
+            </tr>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../JS/scriptstaff.js"></script>
