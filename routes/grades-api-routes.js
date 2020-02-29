@@ -17,7 +17,7 @@ module.exports = function (app) {
       include: [db.Homework, db.Course, db.User]
     }).then(function (dbHomework) {
       res.json(dbHomework);
-    });
+    })
   });
 
   //put methodes for updating student grade

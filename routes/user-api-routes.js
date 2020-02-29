@@ -1,9 +1,12 @@
 var db = require("../models");
+var passport = require("../config/passport");
 //routes
 module.exports = function (app) {
 
   //post method for the sign in ..
-
+  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    res.json(req.User);
+  });
   //post route for sign up
 
   app.post("/api/signup", function (req, res) {
@@ -16,10 +19,11 @@ module.exports = function (app) {
         res.status(401).json(err);
       });
   });
+
   //put route for the student to update his details 
   app.put("/api/signup", function (req, res) {
     db.User.update(
-      req.body,
+      req.sbody,
       {
         where: {
           id: req.body.id
@@ -31,7 +35,7 @@ module.exports = function (app) {
       });
   });
 
-  app.get("/logout", function (req, res) {
+  app.get("/logout", function(req, res) {
     req.logout();
     res.redirect("/");
   });
