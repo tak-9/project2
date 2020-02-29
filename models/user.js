@@ -10,10 +10,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
-    userName: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     password: {
       type: DataTypes.STRING,
       allowNull: false
@@ -38,7 +34,7 @@ module.exports = function (sequelize, DataTypes) {
     phoneNumber: DataTypes.INTEGER,
     email: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       unique: true,
       validate: {
         isEmail: true
@@ -51,7 +47,6 @@ module.exports = function (sequelize, DataTypes) {
     }
 
   });
-
   User.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
   };

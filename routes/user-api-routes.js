@@ -3,7 +3,9 @@ var db = require("../models");
 module.exports = function (app) {
 
   //post method for the sign in ..
-
+  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    res.json(req.User);
+  });
   //post route for sign up
 
   app.post("/api/signup", function (req, res) {
