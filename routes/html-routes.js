@@ -1,5 +1,10 @@
 var path = require("path");
 
+// Requiring our custom middleware for checking if a user is logged in
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+var isStaff = require("../config/middleware/isStaff");
+var isStudent = require("../config/middleware/isStudent");
+
 
 //  we need to change the pages name to the right one 
 /////
@@ -30,11 +35,11 @@ module.exports = function (app) {
 
   });
 
-  app.get("/staff", function (req, res) {
+  app.get("/staff",isStaff, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/staff.html"));
   });
 
-  app.get("/student", function (req, res) {
+  app.get("/student",isStudent, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/student.html"));
   });
 
@@ -42,11 +47,11 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
   // grades for students by staff only 
-  app.get("/studentgrades", function (req, res) {
+  app.get("/studentgrades",isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/grades.html"));
   });
   //the grade page for one student
-  app.get("/grade", function (req, res) {
+  app.get("/grade",isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/grade.html"));
   });
 
