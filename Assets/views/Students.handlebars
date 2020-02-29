@@ -1,0 +1,160 @@
+<!-- 5. Output the animalType string, pet boolean, and fierceness number to the page for all the pets. -->
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <div class="field is-grouped logout">
+                <div class="control">
+                    <button class="button">Logout</button>
+                </div>
+            </div>
+            <h1 class="title">
+                Proficiency Education
+            </h1>
+
+        </div>
+    </div>
+
+</section>
+
+<div class="container">
+    <div class="columns">
+        <div class="column is-one-quarter">
+            <aside class="menu">
+
+                <p class="menu-label">
+                    Student Menu
+                </p>
+                <ul class="menu-list">
+                    <li><a id="studentDetailBtn">Student Details</a></li>
+                    <li><a id="guardianDetailBtn">Guardian Details</a></li>
+                    <li><a id="quizResultBtn">View past quiz results</a></li>
+                </ul>
+
+            </aside>
+
+
+        </div>
+        <div id="quizResults" class="column is-three-quarter hide">
+            <label class="classheading">Choose a class:</label>
+            <p class="control">
+                <span class="select">
+                    <select>
+                        {{#each class}}
+                        <option>
+                            {{classes}}
+                        </option>
+                        {{/each}}
+                    </select>
+                </span>
+            </p>
+            <br>
+            <br>
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>Week</th>
+                        <th>Marks</th>
+                        <th>Full Marks</th>
+                    </tr>
+                </thead>
+                {{#each student}}
+                <tr>
+                    <td>{{week}}</td>
+                    <td>{{quizMarks}}</td>
+                    <td>{{fullMarks}}</td>
+                </tr>
+                {{/each}}
+
+
+            </table>
+        </div>
+        <div id="studentDetails" class='column is-three-quarter show '>
+            <h3 class="title">
+                Student Details
+            </h3>
+            <div class="field">
+                <label class="label">Email (username)</label>
+                <p>{{email}}</p>
+            </div>
+
+            <div class="field">
+                <label class="label">First Name</label>
+                <p>{{firstName}}</p>
+            </div>
+            <div class="field">
+                <label class="label">Last Name</label>
+                <p>{{lastName}}</p>
+            </div>
+            <div class="field">
+                <label class="label">Mobile</label>
+                <p>{{mobile}}</p>
+            </div>
+            <div class="field">
+                <label class="label">Date of Birth</label>
+                <p>{{dob}}</p>
+            </div>
+            <div class="field">
+                <label class="label">Street Address</label>
+                <p>{{streetAddress}}</p>
+            </div>
+            <div class="field">
+                <label class="label">Suburb</label>
+                <p>{{suburb}}</p>
+            </div>
+
+            <div class="field">
+                <label class="label">School</label>
+                <p>{{school}}</p>
+            </div>
+
+            <div class="field">
+                <label class="label">Year Group</label>
+                <p>{{year}}</p>
+            </div>
+
+
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link">Edit</button>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="guardianDetails" class="column is-three-quarter hide ">
+            <br>
+            <h3 class="title">
+                Guardian Details
+            </h3>
+            <div class="field">
+                <label class="label">Email</label>
+                <p>{{guardianEmail}}</p>
+            </div>
+
+            <div class="field">
+                <label class="label">First Name</label>
+                <p>{{guardianFirstName}}</p>
+            </div>
+            <div class="field">
+                <label class="label">Last Name</label>
+                <p>{{guardianLastName}}</p>
+            </div>
+            <div class="field">
+                <label class="label">Mobile</label>
+                <p>{{guardianMobile}}</p>
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link">Edit</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../JS/scriptstudent.js"></script>
