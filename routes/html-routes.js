@@ -12,14 +12,16 @@ var isStudent = require("../config/middleware/isStudent");
 module.exports = function (app) {
   // home pages (login page)
   app.get("/", function (req, res) {
-    console.log("app.get / req ", req.User);
-    if (req.User.userType === "student") {
-      res.redirect("/student");
-    } else if (req.User.userType === "staff") {
-      res.redirect("/staff");
-
+    console.log("app.get / req.User", req.User);
+    console.log("app.get / req.user", req.user);
+    if (req.user) {
+      if (req.User.userType === "student") {
+        res.redirect("/student");
+      } else if (req.User.userType === "staff") {
+        res.redirect("/staff");
+      }
     } else {
-      res.sendFile(path.join(__dirname, "../public/home.html"));
+      res.sendFile(path.join(__dirname, "../Assets/Pages/login.html"));
     }
   });
 
@@ -29,30 +31,30 @@ module.exports = function (app) {
     } else if (req.User.userType === "staff") {
       res.redirect("/staff");
     } else {
-      res.sendFile(path.join(__dirname, "../public/login.html"));
+      res.sendFile(path.join(__dirname, "../Assets/Pages/login.html"));
     }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    res.sendFile(path.join(__dirname, "../Assets/Pages/login.html"));
 
   });
 
   app.get("/staff",isStaff, function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/staff.html"));
+    res.sendFile(path.join(__dirname, "../Assets/Pages/staff.html"));
   });
 
   app.get("/student",isStudent, function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/student.html"));
+    res.sendFile(path.join(__dirname, "../Assets/Pages/student.html"));
   });
 
   app.get("/signup", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+    res.sendFile(path.join(__dirname, "../Assets/Pages/signup.html"));
   });
   // grades for students by staff only 
   app.get("/studentgrades",isAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/grades.html"));
+    res.sendFile(path.join(__dirname, "../Assets/Pages/grades.html"));
   });
   //the grade page for one student
   app.get("/grade",isAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/grade.html"));
+    res.sendFile(path.join(__dirname, "../Assets/Pages/grade.html"));
   });
 
 

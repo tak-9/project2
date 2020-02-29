@@ -1,4 +1,8 @@
+# For Mac
 .DS_Store
+
+# MySQL Password
+config/config.json
 
 # Logs
 logs
