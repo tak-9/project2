@@ -48,11 +48,11 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
   // grades for students by staff only 
-  app.get("/studentgrades", function (req, res) {
+  app.get("/studentgrades",isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/grades.html"));
   });
   //the grade page for one student
-  app.get("/grade", function (req, res) {
+  app.get("/grade",isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/grade.html"));
   });
 
