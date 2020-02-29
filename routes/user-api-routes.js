@@ -1,4 +1,5 @@
 var db = require("../models");
+var passport = require("../config/passport");
 //routes
 module.exports = function (app) {
 
@@ -22,7 +23,7 @@ module.exports = function (app) {
   //put route for the student to update his details 
   app.put("/api/signup", function (req, res) {
     db.User.update(
-      req.body,
+      req.sbody,
       {
         where: {
           id: req.body.id
