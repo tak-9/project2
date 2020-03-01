@@ -10,13 +10,30 @@ module.exports = function (app) {
   //post route for sign up
 
   app.post("/api/signup", function (req, res) {
-    db.User.create(req.body).then(function (dbSign) {
-
-      res.json(dbSign);
-      res.redirect(307, "/api/login");
-    })
+    var student = req.body.student;
+    var guardian = req.body.guardian;
+    console.log("student", student);
+    console.log("guardian", guardian);
+    db.User.create(student)
+      .then(() => {
+        db.User.findOne({
+          where: {
+            email: student.email
+          }
+        })
+          .then((data) => {
+            guardian.studentid = data.id;
+            db.Parent.create(guardian)
+            res.status(201).json({});
+          })
+          .catch(function (err) {
+            console.log("catch 1", err);
+            res.status(500).json(err);
+          });
+      })
       .catch(function (err) {
-        res.status(401).json(err);
+        console.log("catch 2",err);
+        res.status(500).json(err);
       });
   });
 

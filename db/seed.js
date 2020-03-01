@@ -11,12 +11,10 @@ async function cleanUpDb(){
 
 async function createUsers() {
     await db.User.create({
-        userFirstName: "FirstTeacher",
-        userLastName: "LastTeacher",
+        name: "TeacherName",
         //    userName: "teacher",
         password: "123",
-        street: "teacher st",
-        suburb: "teacher suburb",
+        address: "teacher st teacher suburb",
         school: "teacher's school",
         birthdate: "date",
         phoneNumber: "1234567890",
@@ -26,12 +24,9 @@ async function createUsers() {
     })
 
     await db.User.create({
-        userFirstName: "FirstStudent",
-        userLastName: "LastStudent",
-        //    userName: "Student",
+        name: "StudentName",
         password: "123",
-        street: "Student st",
-        suburb: "Student suburb",
+        address: "Student st Student suburb",
         school: "Student's school",
         birthdate: "date",
         phoneNumber: "0237890",
@@ -39,6 +34,7 @@ async function createUsers() {
         yeargroup: "1",
         userType: "student"
     })
+    // A student must be created before you can create a parent
     createParent();
 } 
 
@@ -51,8 +47,7 @@ async function createParent(){
     .then((data)=>{
         //console.log(data);
         db.Parent.create({
-            firstName: "firstParent",
-            lastName: "lastParent",
+            name: "lastParent",
             phone: "1123",
             email: "parent@test.com",
             studentid: data.id

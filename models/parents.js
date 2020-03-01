@@ -1,8 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
   var Parent = sequelize.define("Parent", {
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    phone: DataTypes.INTEGER,
+    name: DataTypes.STRING,
+    phone: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
       allowNull: true,
