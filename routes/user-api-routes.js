@@ -5,7 +5,7 @@ module.exports = function (app) {
 
   //post method for the sign in ..
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
-    res.json(req.User);
+    res.json(req.user);
   });
   //post route for sign up
 
