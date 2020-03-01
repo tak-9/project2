@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Details</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="./js/enrol.js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="columns">
+
+      <div class="column"></div>
+
+      <div class="column is-three-fifths">
+        <br>
+        <h3 class="title">
+          Student Details
+        </h3>
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control has-icons-left has-icons-right">
+            <input id="email" class="input" type="email" placeholder="This will be used as your username" value="">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input id="password" class="input" type="password" placeholder="">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input id="name" class="input" type="text" placeholder="">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Phone</label>
+          <div class="control">
+            <input id="phone" class="input" type="text" placeholder="">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Date of Birth</label>
+          <div class="control">
+            <input id="dateOfBirth"  class="input" type="text" placeholder="dd/mm/yy">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Address</label>
+          <div class="control">
+            <input id="address" class="input" type="text" placeholder="">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">School</label>
+          <div class="control">
+            <input id="school" class="input" type="text" placeholder="">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Year Group</label>
+          <div class="control">
+            <div class="select">
+              <select id="yearGroup">
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+              </select>
+            </div>
+          </div>
+        </div>
+    
+
+  
+      </div>
+      <div class="column"></div>
+    </div>
+  </div>
+  <hr>
+  <div class="container">
+    <div class="columns">
+
+
+      <div class="column"></div>
+
+      <div class="column is-three-fifths">
+        <br>
+        <h3 class="title">
+          Guardian Details
+        </h3>
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control has-icons-left has-icons-right">
+            <input id="guardianEmail" class="input" type="email" placeholder="" value="">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input id="guardianName" class="input" type="text" placeholder="">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Phone</label>
+          <div class="control">
+            <input id="guardianPhone" class="input" type="text" placeholder="">
+          </div>
+        </div>
+
+
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input type="checkbox">
+              I agree to the recieving tuition information regarding my child 
+            </label>
+          </div>
+        </div>
+
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button id="enrolBtn" type="submit" class="button is-link">Enrol</button>
+          </div>
+
+          <div class="control">
+            <a href="/login.html">
+            <button class="button is-link">Go to Login Page</button>
+            </a>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="column"></div>
+    </div>
+  </div>
+  <br>
+  <footer class="footer smallfooter">
+      <div class="content has-text-centered">
+          <p>
+             Copyright 2020 Proficiency Education 
+          </p>
+      </div>
+  </footer>
+</body>
+
+</html>

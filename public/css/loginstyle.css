@@ -1,0 +1,39 @@
+.jumbotron {
+    background-color: rgb(107, 106, 101);
+}
+
+.header {
+    color: white;
+}
+
+
+.page-footer {
+    background-color: rgb(107, 106, 101);
+    position: relative;
+ 
+    height: 50px;
+}
+
+.footer-copyright {
+    color: white;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+
+  .wrapper {
+    min-height: 100%;
+  
+    /* Equal to height of footer */
+    /* But also accounting for potential margin-bottom of last child */
+    margin-bottom: -50px;
+  }
+
+
+
+.push {
+  height: 50px;
+}
