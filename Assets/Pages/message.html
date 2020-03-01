@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Message Students</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/studentstyle.css" type="text/css">
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <div class="field is-grouped logout">
+          <div class="control">
+            <button class="button">Logout</button>
+          </div>
+        </div>
+        <h1 class="title">
+          Proficiency Education
+        </h1>
+        
+      </div>
+    </div>
+
+  </section>
+
+
+
+  <div id="StudentDetails" class="container show">
+    <div class="column is-three-quarters">
+
+      <div class="field has-addons">
+        <p class="control">
+          <span class="select">
+            <select>
+              <option>Last Name</option>
+              <option>School</option>
+              <option>Year</option>
+              <option>Mobile</option>
+            </select>
+          </span>
+        </p>
+        <p class="control">
+          <input class="input" type="text" placeholder="Find a student">
+        </p>
+        <p class="control">
+          <a class="button is-link">
+            Search
+          </a>
+        </p>
+      </div>
+
+      <br>
+      <div class="table-container">
+        <table class="table is-hoverable is-striped is-narrow">
+          <thead>
+            <tr>
+              <th>
+                <div class="buttons">
+                  <button class="button is-light">All</button>
+                </div>
+              </th>
+              <th>ID</th>
+              <th>Last Name</th>
+              <th>First Name</th>
+              <th>Mobile</th>
+              <th>School</th>
+              <th>Year</th>
+              <th>Email</th>
+              <th>
+                <div class="buttons">
+                  <button class="button is-light">All</button>
+                </div>
+              </th>
+              <th>Guardian First Name</th>
+              <th>Guardian Last Name</th>
+              <th>Guardian Mobile</th>
+              <th>Guardian Email</th>
+              <th>Street Address</th>
+              <th>Suburb</th>
+              <th>D.O.B</th>
+              <th>Date Enrolled</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>
+              <div class="buttons">
+                <button class="button is-white">+</button>
+              </div>
+          </td>
+            <td>1</td>
+            <td>Xu</td>
+            <td>Daniel</td>
+            <td>0434289590</td>
+            <td>James Ruse</td>
+            <td>12</td>
+            <td>danielxu1989@gmail.com</td>
+            <td>
+              <div class="buttons">
+                <button class="button is-white">+</button>
+              </div>
+          </td>
+            <td>Mary</td>
+            <td>Dong</td>
+            <td>0411615618</td>
+            <td>info@proed.com.au</td>
+            <td>11 Spencer Street</td>
+            <td>Eastwood</td>
+            <td>22/10/1989</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="buttons">
+                <button class="button is-white">+</button>
+              </div>
+          </td>
+            <td>1</td>
+            <td>Sun</td>
+            <td>David</td>
+            <td>0434289590</td>
+            <td>James Ruse</td>
+            <td>12</td>
+            <td>danielxu1989@gmail.com</td>
+            <td>
+              <div class="buttons">
+                <button class="button is-white">+</button>
+              </div>
+          </td>
+            <td>Mary</td>
+            <td>Dong</td>
+            <td>0411615618</td>
+            <td>info@proed.com.au</td>
+            <td>11 Spencer Street</td>
+            <td>Eastwood</td>
+            <td>22/10/1989</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="buttons">
+                <button class="button is-white">+</button>
+              </div>
+            </td>
+            <td>1</td>
+            <td>Zhou</td>
+            <td>David</td>
+            <td>0434289590</td>
+            <td>James Ruse</td>
+            <td>12</td>
+            <td>danielxu1989@gmail.com</td>
+            <td>
+              <div class="buttons">
+                <button class="button is-white">+</button>
+              </div>
+          </td>
+            <td>Mary</td>
+            <td>Dong</td>
+            <td>0411615618</td>
+            <td>info@proed.com.au</td>
+            <td>11 Spencer Street</td>
+            <td>Eastwood</td>
+            <td>22/10/1989</td>
+            <td>-</td>
+          </tr>
+        </table>
+      </div>
+
+
+
+
+    </div>
+
+
+
+      <section class="section">
+        <div class="container">
+
+
+          <div class="columns">
+            <div class="column is-half">
+
+              <div class="field">
+                <label class="label">Students</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="">
+                </div>
+              </div>
+
+              
+
+              <div class="field">
+                <label class="label">Send via:</label>
+                <div class="control">
+                  <div class="select">
+                    <select>
+                      <option>SMS</option>
+                      <option>Email</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                  <textarea class="textarea" placeholder="Message"></textarea>
+                </div>
+              </div>
+
+             
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-link">Send to all</button>
+                </div>
+                <div class="control">
+                  <button class="button is-link is-light">Clear</button>
+                </div>
+              </div>
+
+
+
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+
+
+        <div class="column"></div>
+    </div>
+
+  </div>
+  </section>
+
+</body>
+
+</html>
