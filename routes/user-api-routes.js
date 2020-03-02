@@ -16,11 +16,10 @@ module.exports = function (app) {
     // console.log("student", student);
     // console.log("guardian", guardian);
     
-    // 1. Insert gurdian data into 'parents' table'. 
+    // 1. Insert gurdian data into 'parents' table'. (Skip 1,2 if guardian email is not supplied)
     // 2. Then, get the 'id' of the new gurdian from 'parents' table.
     // 3. Insert student data into 'student' table with parentId.
     
-    var newParentId = "";
     if (guardian.email !== "") {
       await db.Parent.create(guardian)
       .then((data)=>{
@@ -30,7 +29,8 @@ module.exports = function (app) {
         res.status(500).json({"msg":"Error in inserting parent."});
       })  
     }
-    console.log("student to insert",student);
+
+    //console.log("student to insert",student);
 
     await db.User.create(student)
     .then((data) => {
