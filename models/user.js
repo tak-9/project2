@@ -2,11 +2,7 @@ var bcrypt = require("bcryptjs");
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
     // Giving the Author model a name of type STRING
-    userFirstName: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    userLastName: {
+    name: {
       type: DataTypes.STRING,
       allowNull: true
     },
@@ -14,11 +10,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    street: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    suburb: {
+    address: {
       type: DataTypes.STRING,
       allowNull: true
     },
@@ -30,8 +22,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
-
-    phoneNumber: DataTypes.INTEGER,
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -40,7 +34,10 @@ module.exports = function (sequelize, DataTypes) {
         isEmail: true
       }
     },
-    yeargroup: DataTypes.INTEGER,
+    yeargroup: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
     userType: {
       type: DataTypes.STRING,
       allowNull: false

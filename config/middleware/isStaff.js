@@ -2,7 +2,7 @@
 module.exports = function(req, res, next) {
   if (req.user) {
     // If the user is logged in, continue with the request to the restricted route
-    if (req.user.usertype === "staff") {
+    if (req.user.userType === "staff") {
       return next();
     } else {
       // for any other user type

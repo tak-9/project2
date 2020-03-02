@@ -7,19 +7,14 @@
   <title>Student Details</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="./js/enrol.js"></script>
 </head>
 
 <body>
 
-
   <div class="container">
     <div class="columns">
-
-
-
 
       <div class="column"></div>
 
@@ -31,54 +26,46 @@
         <div class="field">
           <label class="label">Email</label>
           <div class="control has-icons-left has-icons-right">
-            <input class="input" type="email" placeholder="This will be used as your username" value="">
+            <input id="email" class="input" type="email" placeholder="This will be used as your username" value="">
             <span class="icon is-small is-left">
               <i class="fas fa-envelope"></i>
             </span>
           </div>
         </div>
-
         <div class="field">
-          <label class="label">First Name</label>
+          <label class="label">Password</label>
           <div class="control">
-            <input class="input" type="text" placeholder="">
+            <input id="password" class="input" type="password" placeholder="">
           </div>
         </div>
         <div class="field">
-          <label class="label">Last Name</label>
+          <label class="label">Name</label>
           <div class="control">
-            <input class="input" type="text" placeholder="">
+            <input id="name" class="input" type="text" placeholder="">
           </div>
         </div>
         <div class="field">
-          <label class="label">Mobile</label>
+          <label class="label">Phone</label>
           <div class="control">
-            <input class="input" type="text" placeholder="">
+            <input id="phone" class="input" type="text" placeholder="">
           </div>
         </div>
         <div class="field">
           <label class="label">Date of Birth</label>
           <div class="control">
-            <input class="input" type="text" placeholder="dd/mm/yy">
+            <input id="dateOfBirth"  class="input" type="text" placeholder="dd/mm/yy">
           </div>
         </div>
         <div class="field">
-          <label class="label">Street Address</label>
+          <label class="label">Address</label>
           <div class="control">
-            <input class="input" type="text" placeholder="">
+            <input id="address" class="input" type="text" placeholder="">
           </div>
         </div>
-        <div class="field">
-          <label class="label">Suburb</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="">
-          </div>
-        </div>
-
         <div class="field">
           <label class="label">School</label>
           <div class="control">
-            <input class="input" type="text" placeholder="">
+            <input id="school" class="input" type="text" placeholder="">
           </div>
         </div>
 
@@ -86,7 +73,7 @@
           <label class="label">Year Group</label>
           <div class="control">
             <div class="select">
-              <select>
+              <select id="yearGroup">
                 <option>7</option>
                 <option>8</option>
                 <option>9</option>
@@ -97,16 +84,9 @@
             </div>
           </div>
         </div>
+    
 
-
-
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">Save Changes</button>
-            <button class="button">Cancel</button>
-          </div>
-
-        </div>
+  
       </div>
       <div class="column"></div>
     </div>
@@ -126,7 +106,7 @@
         <div class="field">
           <label class="label">Email</label>
           <div class="control has-icons-left has-icons-right">
-            <input class="input" type="email" placeholder="" value="">
+            <input id="guardianEmail" class="input" type="email" placeholder="" value="">
             <span class="icon is-small is-left">
               <i class="fas fa-envelope"></i>
             </span>
@@ -134,27 +114,17 @@
         </div>
 
         <div class="field">
-          <label class="label">First Name</label>
+          <label class="label">Name</label>
           <div class="control">
-            <input class="input" type="text" placeholder="">
+            <input id="guardianName" class="input" type="text" placeholder="">
           </div>
         </div>
         <div class="field">
-          <label class="label">Last Name</label>
+          <label class="label">Phone</label>
           <div class="control">
-            <input class="input" type="text" placeholder="">
+            <input id="guardianPhone" class="input" type="text" placeholder="">
           </div>
         </div>
-        <div class="field">
-          <label class="label">Mobile</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="">
-          </div>
-        </div>
-
-
-
-
 
 
         <div class="field">
@@ -169,9 +139,15 @@
 
         <div class="field is-grouped">
           <div class="control">
-            <button class="button is-link">Save Changes</button>
-            <button class="button">Cancel</button>
+            <button id="enrolBtn" type="submit" class="button is-link">Enrol</button>
           </div>
+
+          <div class="control">
+            <a href="/login.html">
+            <button class="button is-link">Go to Login Page</button>
+            </a>
+          </div>
+
 
         </div>
       </div>
