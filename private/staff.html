@@ -5,10 +5,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Staff Menu</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  <link rel="stylesheet" href="../css/studentstyle.css" type="text/css">
-
+  <link rel="stylesheet" href="../css/studentstyle.css" type="text/css">    
+  <script type="text/javascript" src="../JS/scriptstaff.js"></script>
 </head>
 
 <body>
@@ -37,241 +38,18 @@
             Staff Menu
           </p>
           <ul class="menu-list">
-            <li><a id="viewStudentBtn">View student details</a></li>
-            <li><a id="viewQuizResultsBtn">View past quiz results</a></li>
-            <li><a id="enterQuizResultsBtn">Enter quiz results</a></li>
-
+            <li><a href="/staff/view_student_details">View list of students</a></li>
+            <li><a id="/staff/view_quiz_result">View list of past quiz results</a></li>
+            <li><a id="/staff/enter_quiz_results">Enter quiz results</a></li>
           </ul>
-
         </aside>
 
 
       </div>
-      <div id="viewQuizResults" class="column is-three-quarter show">
-
-       
-            <span class="select">
-              <select class="selectClasses">
-                <option>Classes</option>
-                <option>Tuesday Year 11 2U</option>
-                <option>Wednesday Year 12 3U</option>
-                <option>Thursday Year 11 Chemistry</option>
-              </select>
-            </span>
-     
-      
-      
-       
-            <span class="select">
-              <select class="selectClasses">
-                <option>Week</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-              </select>
-            </span>
-      
-       
-
-        <br>
-        <br>
-        <table class="table">
-
-          <thead>
-            <tr>
-              <th>Week</th>
-              <th>Student Name</th>
-              <th>Marks</th>
-              <th>Full Marks</th>
-            </tr>
-          </thead>
-          <tr>
-
-            <td>1</td>
-            <td>Daniel Xu</td>
-            <td>65</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Harrison Ford</td>
-            <td>85</td>
-            <td>100</td>
-          </tr>
-        </table>
-      </div>
-
-
-      <div id="enterQuizResults" class="column is-three-quarter hide">
-        <span class="select">
-          <select class="selectClasses">
-            <option>Classes</option>
-            <option>Tuesday Year 11 2U</option>
-            <option>Wednesday Year 12 3U</option>
-            <option>Thursday Year 11 Chemistry</option>
-          </select>
-        </span>
+      <div id="rightside" class="column is-three-quarter show">
  
-  
-  
-   
-        <span class="select">
-          <select class="selectClasses">
-            <option>Week</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </span>
-  
-
-
-        <br>
-        <br>
-        <table class="table">
-
-          <thead>
-            <tr>
-              <th>Week</th>
-              <th>Student Name</th>
-              <th>Marks</th>
-              <th>Full Marks</th>
-            </tr>
-          </thead>
-          <tr>
-
-            <td>1</td>
-            <td>Daniel Xu</td>
-            <td>
-              <input class="input" type="text" placeholder="student marks">
-            </td>
-            <td>
-              <input class="input" type="text" placeholder="quiz is out of:">
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Harrison Ford</td>
-            <td>
-              <input class="input" type="text" placeholder="student marks">
-            </td>
-            <td>
-              <input class="input" type="text" placeholder="quiz is out of:">
-            </td>
-          </tr>
-        </table>
-        <button class="button is-link">Save results</button>
-        <button class="button is-danger">Send results to parents</button>
       </div>
 
-      <div id="StudentDetails" class="container hide">
-        <div class="column is-three-quarters">
-
-          <div class="field has-addons">
-            <p class="control">
-              <span class="select">
-                <select>
-                  <option>Last Name</option>
-                  <option>School</option>
-                  <option>Year</option>
-                  <option>Mobile</option>
-                </select>
-              </span>
-            </p>
-            <p class="control">
-              <input class="input" type="text" placeholder="Find a student">
-            </p>
-            <p class="control">
-              <a class="button is-link">
-                Search
-              </a>
-            </p>
-          </div>
-
-          <br>
-          <div class="table-container">
-            <table class="table is-hoverable is-striped is-narrow">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Last Name</th>
-                  <th>First Name</th>
-                  <th>Mobile</th>
-                  <th>School</th>
-                  <th>Year</th>
-                  <th>Email</th>
-                  <th>Guardian First Name</th>
-                  <th>Guardian Last Name</th>
-                  <th>Guardian Mobile</th>
-                  <th>Guardian Email</th>
-                  <th>Street Address</th>
-                  <th>Suburb</th>
-                  <th>D.O.B</th>
-                  <th>Date Enrolled</th>
-                </tr>
-              </thead>
-              <tr>
-                <td>1</td>
-                <td>Xu</td>
-                <td>Daniel</td>
-                <td>0434289590</td>
-                <td>James Ruse</td>
-                <td>12</td>
-                <td>danielxu1989@gmail.com</td>
-                <td>Mary</td>
-                <td>Dong</td>
-                <td>0411615618</td>
-                <td>info@proed.com.au</td>
-                <td>11 Spencer Street</td>
-                <td>Eastwood</td>
-                <td>22/10/1989</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Sun</td>
-                <td>David</td>
-                <td>0434289590</td>
-                <td>James Ruse</td>
-                <td>12</td>
-                <td>danielxu1989@gmail.com</td>
-                <td>Mary</td>
-                <td>Dong</td>
-                <td>0411615618</td>
-                <td>info@proed.com.au</td>
-                <td>11 Spencer Street</td>
-                <td>Eastwood</td>
-                <td>22/10/1989</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Zhou</td>
-                <td>David</td>
-                <td>0434289590</td>
-                <td>James Ruse</td>
-                <td>12</td>
-                <td>danielxu1989@gmail.com</td>
-                <td>Mary</td>
-                <td>Dong</td>
-                <td>0411615618</td>
-                <td>info@proed.com.au</td>
-                <td>11 Spencer Street</td>
-                <td>Eastwood</td>
-                <td>22/10/1989</td>
-                <td>-</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-
-
-      </div>
-
-
-
-      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-      <script type="text/javascript" src="../JS/scriptstaff.js"></script>
 </body>
 
 </html>
