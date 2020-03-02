@@ -40,9 +40,47 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../private/staff.html"));
   });
 
+  app.get("/staff/view_student_list",isStaff, function (req, res) {
+    /*
+    //This need to be changed
+    // Get the studnet and gurdian data. Assign it to hsbObject.
+    burger.selectAll(function(data) {
+      var hbsObject = {
+        burgers: data
+      };
+      res.render("view_student_list", hbsObject);
+    });
+    */  
+  });
+
+  app.get("/staff/view_quiz_result",isStaff, function (req, res) {
+    // Query quiz result.
+    // Pass query result to handlebar and rendar it.
+  });
+
+  app.get("/staff/view_quiz_result",isStaff, function (req, res) {
+    // Query quiz result.
+    // Use handlebar to rendar it.
+  });
+
+  app.get("/staff/enter_quiz_results",isStaff, function (req, res) {
+    // Use handlebar to rendar it.
+  });
+
   app.get("/student",isStudent, function (req, res) {
     res.sendFile(path.join(__dirname, "../private/student.html"));
   });
+
+  app.get("/student/view_student_details",isStudent, function (req, res) {
+    // Get id of currently logged in student.
+    // Query student details for the student and gurdian.
+    // Use handlebar to rendar it.
+  });
+
+  app.get("/student/view_quiz",isStudent, function (req, res) {
+    // Use handlebar to rendar it.
+  });
+
 
   app.get("/signup", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/signup.html"));

@@ -7,8 +7,9 @@
   <title>Student Menu</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  <link rel="stylesheet" href="../css/studentstyle.css" type="text/css">
-
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <link rel="stylesheet" href="../css/studentstyle.css" type="text/css">  
+  <script type="text/javascript" src="../JS/scriptstudent.js"></script>  
 </head>
 
 <body>
@@ -41,10 +42,9 @@
             Student Menu
           </p>
           <ul class="menu-list">
-            <li><a id="studentDetailBtn">Student Details</a></li>
-            <li><a id="guardianDetailBtn">Guardian Details</a></li>
-            <li><a id="quizResultBtn">View past quiz results</a></li>
-
+            <li><a href="/student/view_student">Student Details</a></li>
+            <li><a href="/student/view_guardian">Guardian Details</a></li>
+            <li><a href="/student/view_quiz">View past quiz results</a></li>
           </ul>
 
         </aside>
@@ -52,133 +52,8 @@
 
       </div>
       <div id="quizResults" class="column is-three-quarter hide">
-        <label class="classheading">Choose a class:</label>
-
-        <p class="control">
-          <span class="select">
-            <select>
-              <option>Monday Year 12 Chemistry</option>
-              <option>Tuesday Year 11 3U</option>
-    
-            </select>
-          </span>
-        </p>
-        <br>
-        <br>
-        <table class="table">
-
-          <thead>
-            <tr>
-              <th>Week</th>
-              <th>Marks</th>
-              <th>Full Marks</th>
-            </tr>
-          </thead>
-          <tr>
-
-            <td>1</td>
-            <td>65</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>85</td>
-            <td>100</td>
-          </tr>
-        </table>
-      </div>
-      <div id="studentDetails" class='column is-three-quarter show '>
-        <h3 class="title">
-          Student Details
-        </h3>
-        <div class="field">
-          <label class="label">Email</label>
-          <p>catch data from sql</p>
-        </div>
-
-        <div class="field">
-          <label class="label">First Name</label>
-          <p>catch data from sql</p>
-        </div>
-        <div class="field">
-          <label class="label">Last Name</label>
-          <p>catch data from sql</p>
-        </div>
-        <div class="field">
-          <label class="label">Mobile</label>
-          <p>catch data from sql</p>
-        </div>
-        <div class="field">
-          <label class="label">Date of Birth</label>
-          <p>catch data from sql</p>
-        </div>
-        <div class="field">
-          <label class="label">Street Address</label>
-          <p>catch data from sql</p>
-        </div>
-        <div class="field">
-          <label class="label">Suburb</label>
-          <p>catch data from sql</p>
-        </div>
-
-        <div class="field">
-          <label class="label">School</label>
-          <p>catch data from sql</p>
-        </div>
-
-        <div class="field">
-          <label class="label">Year Group</label>
-          <p>catch data from sql</p>
-        </div>
-
-
-
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">Edit</button>
-          </div>
-
-        </div>
-      </div>
-
-
-      <div id="guardianDetails" class="column is-three-quarter hide ">
-        <br>
-        <h3 class="title">
-          Guardian Details
-        </h3>
-        <div class="field">
-          <label class="label">Email</label>
-          <p>catch data from sql</p>
-        </div>
-
-        <div class="field">
-          <label class="label">First Name</label>
-          <p>catch data from sql</p>
-        </div>
-        <div class="field">
-          <label class="label">Last Name</label>
-          <p>catch data from sql</p>
-        </div>
-        <div class="field">
-          <label class="label">Mobile</label>
-          <p>catch data from sql</p>
-        </div>
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">Edit</button>
-          </div>
-        </div>
-      </div>
      
     </div>
 
-
-
-
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../JS/scriptstudent.js"></script>
 </body>
-
 </html>
