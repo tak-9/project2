@@ -80,7 +80,7 @@ module.exports = function (app) {
     if (req.User.id) {
       query.studentId = req.User.id;
     } 
-      db.User.findAll({
+      db.User.findOne({
         where: query,
         include: [db.Parent]
       }).then(function (dbUserDetails) { 
