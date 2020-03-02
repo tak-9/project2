@@ -72,10 +72,14 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../private/student.html"));
   });
 
+  /*var dummyStudent = {
+    name: "jack",
+    age: 12
+  }*/
   app.get("/student/view_student_details",isStudent, function (req, res) {
     // Get id of currently logged in student.
     console.log("app.get / req.user", req.user);
-    if(req.user){ 
+    if(req.User){ 
       var query = {};
     if (req.User.id) {
       query.studentId = req.User.id;
@@ -85,7 +89,11 @@ module.exports = function (app) {
         include: [db.Parent]
       }).then(function (dbUserDetails) { 
         res.json(dbUserDetails);
-        res.sendFile(path.join(__dirname, "../private/student.html"));
+        //res.sendFile(path.join(__dirname, "../private/student.html"));
+        res.render("students", {
+          student: User,
+          parents: Parent
+        })
       });
     }
     // Query student details for the student and gurdian.

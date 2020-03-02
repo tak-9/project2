@@ -44,6 +44,11 @@ module.exports = function (sequelize, DataTypes) {
     }
 
   });
+  User.associate = function (models) {
+    Parent.hasOne(models.Parent, {
+      onDelete: "cascade"
+    });
+  };
   User.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
   };

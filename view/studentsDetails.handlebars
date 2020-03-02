@@ -1,38 +1,10 @@
-<!-- 5. Output the animalType string, pet boolean, and fierceness number to the page for all the pets. -->
-<section class="hero">
-    <div class="hero-body">
-        <div class="container">
-            <div class="field is-grouped logout">
-                <div class="control">
-                    <button class="button">Logout</button>
-                </div>
-            </div>
-            <h1 class="title">
-                Proficiency Education
-            </h1>
-
-        </div>
-    </div>
-
-</section>
 
 <div class="container">
     <div class="columns">
-        <div class="column is-one-quarter">
-            <aside class="menu">
+        
+        <!-- insert partial\menu_student.handlebars here -->
+        {{> menu_student}}
 
-                <p class="menu-label">
-                    Student Menu
-                </p>
-                <ul class="menu-list">
-                    <li><a id="studentDetailBtn">Student Details</a></li>
-                    <li><a id="quizResultBtn">View past quiz results</a></li>
-                </ul>
-
-            </aside>
-
-
-        </div>
         <div id="quizResults" class="column is-three-quarter hide">
             <label class="classheading">Choose a class:</label>
             <p class="control">
@@ -141,7 +113,4 @@
         </div>
 
     </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../JS/scriptstudent.js"></script>
+</div>
