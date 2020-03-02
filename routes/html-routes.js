@@ -90,7 +90,7 @@ module.exports = function (app) {
       }).then(function (dbUserDetails) { 
         res.json(dbUserDetails);
         //res.sendFile(path.join(__dirname, "../private/student.html"));
-        res.render("students", {
+        res.render("studentsDetails", {
           student: User,
           parents: Parent
         })
