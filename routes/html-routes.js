@@ -4,11 +4,8 @@ var path = require("path");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 var isStaff = require("../config/middleware/isStaff");
 var isStudent = require("../config/middleware/isStudent");
-
-
 //  we need to change the pages name to the right one 
-/////
-////
+
 module.exports = function (app) {
   // home pages (login page)
   app.get("/", function (req, res) {

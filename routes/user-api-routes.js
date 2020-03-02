@@ -13,7 +13,7 @@ module.exports = function (app) {
     db.User.create(req.body).then(function (dbSign) {
 
       res.json(dbSign);
-      res.redirect(307, "/api/login");
+     // res.redirect(307, "/api/login");
     })
       .catch(function (err) {
         res.status(401).json(err);
