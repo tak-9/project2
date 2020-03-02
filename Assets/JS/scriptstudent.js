@@ -7,7 +7,7 @@ var quizResultsBtn = $("#quizResultBtn");
 var dropdownMenu = $("#dropdown");
 
 
-guardianDetailsbtn.on("click", function(){
+/*guardianDetailsbtn.on("click", function(){
 
 
     $("#studentDetails").removeClass("show").addClass("hide");
@@ -17,13 +17,13 @@ guardianDetailsbtn.on("click", function(){
 
   })
 
-
+*/
 
   studentDetailsbtn.on("click", function(){
 
     
     $("#quizResults").removeClass("show").addClass("hide");
-    $("#guardianDetails").removeClass("show").addClass("hide");
+    $("#guardianDetails").removeClass("hide").addClass("show");
     $("#studentDetails").removeClass("hide").addClass("show");
 
 

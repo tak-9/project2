@@ -1,4 +1,5 @@
 var path = require("path");
+var db = require("../models");
 
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -73,7 +74,22 @@ module.exports = function (app) {
 
   app.get("/student/view_student_details",isStudent, function (req, res) {
     // Get id of currently logged in student.
+    console.log("app.get / req.user", req.user);
+    if(req.user){ 
+      var query = {};
+    if (req.User.id) {
+      query.studentId = req.User.id;
+    } 
+      db.User.findAll({
+        where: query,
+        include: [db.Parent]
+      }).then(function (dbUserDetails) { 
+        res.json(dbUserDetails);
+        res.sendFile(path.join(__dirname, "../private/student.html"));
+      });
+    }
     // Query student details for the student and gurdian.
+
     // Use handlebar to rendar it.
   });
 
