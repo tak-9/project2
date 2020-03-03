@@ -9,12 +9,10 @@ var dropdownMenu = $("#dropdown");
 
 viewStudentDetails.on("click", function(){
 
+  var studentNumber = $("#studentNum").val()
 
-    $("#viewQuizResults").removeClass("show").addClass("hide");
-    $("#enterQuizResults").removeClass("show").addClass("hide");
-    $("#StudentDetails").removeClass("hide").addClass("show");
-
-
+  
+  
   })
 
 
