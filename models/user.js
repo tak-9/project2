@@ -28,7 +28,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       unique: true,
       validate: {
         isEmail: true
@@ -45,6 +45,13 @@ module.exports = function (sequelize, DataTypes) {
 
   });
 
+  User.associate = function (models) {
+    User.belongsTo(models.Parent, {
+//    User.hasOne(models.Parent, {
+        onDelete: "cascade"
+    });
+  };
+  
   User.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
   };
