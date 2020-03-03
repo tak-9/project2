@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  var Enrolment = sequelize.define("Grades", {
+  var Enrolment = sequelize.define("Enrolmet", {
 
     couseId: {
       type: DataTypes.INTEGER,

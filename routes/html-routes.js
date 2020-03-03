@@ -1,5 +1,5 @@
 var path = require("path");
-
+var db = require("../models");
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 var isStaff = require("../config/middleware/isStaff");
@@ -44,16 +44,18 @@ module.exports = function (app) {
   });
 
   app.get("/staff/view_student_list",isStaff, function (req, res) {
-    /*
-    //This need to be changed
-    // Get the studnet and gurdian data. Assign it to hsbObject.
-    burger.selectAll(function(data) {
-      var hbsObject = {
-        burgers: data
-      };
+    db.User.findAll({
+      include: [db.Parent],
+      where: {userType: "student"}
+    })
+    .then((dbResult)=>{
+      var dbResult = JSON.parse(JSON.stringify(dbResult)); 
+      var hbsObject  = { "students" : dbResult };
       res.render("view_student_list", hbsObject);
-    });
-    */  
+    })
+    .catch((err)=>{
+      console.log("err", err);
+    })
   });
 
   app.get("/staff/view_quiz_result",isStaff, function (req, res) {
