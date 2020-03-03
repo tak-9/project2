@@ -78,24 +78,17 @@ module.exports = function (app) {
   }*/
   app.get("/student/view_student_details",isStudent, function (req, res) {
     // Get id of currently logged in student.
-    console.log("app.get / req.user", req.user);
-    if(req.User){ 
-      var query = {};
-    if (req.User.id) {
-      query.studentId = req.User.id;
-    } 
+    console.log("app.get / req.user", req.user); 
       db.User.findOne({
-        where: query,
-        include: [db.Parent]
+        include: [db.Parent],
+        where:req.user.id
       }).then(function (dbUserDetails) { 
-        res.json(dbUserDetails);
-        //res.sendFile(path.join(__dirname, "../private/student.html"));
-        res.render("studentsDetails", {
-          student: User,
-          parents: Parent
-        })
-      });
-    }
+       // res.json(dbUserDetails);
+        console.log("this the user details ",dbUserDetails);
+        var dbUserDetails = JSON.parse(JSON.stringify(dbUserDetails));
+       // var hbsObject  = { "students" : dbUserDetails }; 
+        res.render("view_student_details", dbUserDetails);
+      }).catch(err=>console.log(err));
     // Query student details for the student and gurdian.
 
     // Use handlebar to rendar it.

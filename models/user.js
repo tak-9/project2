@@ -44,9 +44,10 @@ module.exports = function (sequelize, DataTypes) {
     }
 
   });
+
   User.associate = function (models) {
-    User.hasOne(models.Parent, {
-      onDelete: "cascade"
+    User.belongsTo(models.Parent, {
+        onDelete: "cascade"
     });
   };
   User.prototype.validPassword = function (password) {
