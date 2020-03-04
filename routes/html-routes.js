@@ -69,7 +69,7 @@ module.exports = function (app) {
   });
 
   app.get("/staff/enter_quiz_results",isStaff, function (req, res) {
-    // Use handlebar to rendar it.
+    res.sendFile(path.join(__dirname, "../private/enter_quiz_results.html"));
   });
 
   app.get("/student",isStudent, function (req, res) {
