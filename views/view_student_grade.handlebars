@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="columns">
+
+        <!-- insert partial\menu_student.handlebars here -->
+        {{> menu_student}}
+
+            
+            <div class="table-container">
+            <table class="table is-hoverable is-striped is-narrow">
+              <thead>
+                <tr>
+                  
+                 
+                  <th>Course</th>
+                  <th>Homework</th>
+                  <th>Grade</th>
+                </tr>
+                {{#each students}}
+                <tr>
+                    <td>{{Course.courseName}}</td>
+                    <td>{{Homework.name}}</td>
+                    <td>{{grade}}</td>
+                </tr>
+                {{/each}}                
+              </thead>
+            </table>
+          </div>
+
+    </div>
+</div>

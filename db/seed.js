@@ -9,9 +9,8 @@ async function cleanUpDb(){
     await db.Homework.destroy({ where: {} })
     await db.Course.destroy({ where: {} })
     await db.Enrolment.destroy({ where: {} })
+    await db.Grades.destroy({ where: {} })
 }
-
-
 var student1;
 var student2;
 var student3;
@@ -92,7 +91,8 @@ async function createDummyData() {
         ParentId: newParent2.id
     })
     
-    createHomework();        
+    createHomework();
+        
 
 } 
 
@@ -101,13 +101,15 @@ async function createDummyData() {
 var mathCourse;
 var historyCourse;
 var chemistryCourse;
+var bascicChemistryhw;
+var math1Hw;
 async function createHomework() {
     console.log("********* seed.js createHomework() *************")
     mathCourse = await db.Course.create({
         courseName: "Year 8 Math"
     });
     console.log("New Course ID: " , mathCourse.id);
-    await db.Homework.create({
+   math1Hw= await db.Homework.create({
         name: "Week 1 Add",
         CourseId: mathCourse.id
     });
@@ -150,7 +152,7 @@ async function createHomework() {
         courseName: "Year 9 Chemistry"
     });
     console.log("New Course ID: " , mathCourse.id);
-    await db.Homework.create({
+     bascicChemistryhw = await db.Homework.create({
         name: "Week 1 Basic Chemistry",
         CourseId: chemistryCourse.id
     });
@@ -162,8 +164,8 @@ async function createHomework() {
         name: "Week 3 Advance Chemistry",
         CourseId: chemistryCourse.id
     });
-
     createEnrolment();
+    createGrade();  
 }
 
 
@@ -195,6 +197,33 @@ async function createEnrolment() {
         studentId: student3.id
     });
 
+
+}
+
+async function createGrade() {
+
+    await db.Grades.create({
+        grade: 50,
+        studentId: student1.id,
+        homeworkId:bascicChemistryhw.id
+
+    });
+    await db.Grades.create({
+        grade: 150,
+        studentId: student1.id,
+        homeworkId:math1Hw.id
+    });
+    await db.Grades.create({
+        grade: 100,
+        studentId: student1.id,
+        homeworkId:math1Hw.id
+    });
+
+    await db.Grades.create({
+        grade: 150,
+        studentId: student2.id,
+        homeworkId:math1Hw.id
+    });
 
 }
 

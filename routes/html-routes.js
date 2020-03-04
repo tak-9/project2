@@ -96,6 +96,31 @@ module.exports = function (app) {
     // Use handlebar to rendar it.
   });
 
+  app.get("/student/view_student_grade",isStudent, function (req, res) {
+    // Get id of currently logged in student.
+    console.log("app.get / req.user", req.user); 
+      db.Grades.findOne({
+      // include: [
+          // db.Homework,
+          // db.Course,
+         // db.Enrolment],
+        where:req.user.id
+      }).then(function (UserGrades) { 
+        console.log("this the user Grades ",UserGrades);
+        var UserGrades = JSON.parse(JSON.stringify(UserGrades));
+        var hbsObject  = { "students" : UserGrades }; 
+        res.render("view_student_grade", hbsObject);
+      }).catch(function (err) {
+        // handle error;
+        console.log(err)
+      });
+    // Query student details for the student and gurdian.
+
+    // Use handlebar to rendar it.
+  });
+
+
+
   app.get("/student/view_quiz",isStudent, function (req, res) {
     // Use handlebar to rendar it.
   });
