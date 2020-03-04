@@ -29,15 +29,13 @@ require("./routes/grades-api-routes.js")(app);
 require("./routes/user-api-routes.js")(app);
 
 // For creating dummy data
-var seedUsers = require("./db/seed.js");
-var seedHomeworks = require("./db/seed_homework.js");
+var seed = require("./db/seed.js");
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync({force:true}).then(function() {
   app.listen(PORT, async function() {
     // now create dummy users
-    await seedUsers.createUsers();
-    await seedHomeworks.createHomework();
+    await seed.createDummyData();
     console.log("==> Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
   });
 });
