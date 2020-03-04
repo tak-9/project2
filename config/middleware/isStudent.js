@@ -6,7 +6,7 @@ module.exports = function(req, res, next) {
     console.log("A")
     if (req.user.userType === "student") {
       console.log("B")
-      next();
+     return next();
     } else {
       console.log("C")
       return res.status(401).send("<h1>401 Unauthorized</h1>");  

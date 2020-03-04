@@ -82,7 +82,7 @@ module.exports = function (app) {
     // Get id of currently logged in student.
     console.log("app.get / req.user", req.user); 
       db.User.findOne({
-        include: [db.Parent],
+     include: [db.Parent],
         where:req.user.id
       }).then(function (dbUserDetails) { 
        // res.json(dbUserDetails);

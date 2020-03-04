@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Grades.associate = function (models) {
-    Grades.belongsTo(models.Homework, {
+    Grades.hasOne(models.Homework, {
       foreignKey: {
         allowNull: false
       }

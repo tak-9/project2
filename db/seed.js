@@ -9,7 +9,7 @@ async function cleanUpDb(){
     await db.Homework.destroy({ where: {} })
     await db.Course.destroy({ where: {} })
     await db.Enrolment.destroy({ where: {} })
-    await db.Grades.destroy({ where: {} })
+ //  await db.Grades.destroy({ where: {} })
 }
 var student1;
 var student2;
@@ -165,7 +165,7 @@ async function createHomework() {
         CourseId: chemistryCourse.id
     });
     createEnrolment();
-    createGrade();  
+   // createGrade();  
 }
 
 
