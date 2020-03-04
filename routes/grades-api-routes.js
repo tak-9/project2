@@ -6,6 +6,45 @@ var db = require("../models");
 // =============================================================
 module.exports = function (app) {
 
+  app.get("/api/courses", function (req, res){
+    db.Course.findAll()
+    .then((dbResult) => {
+        var coursesArr = [];
+        for (var i=0; i<dbResult.length; i++){
+            var JSONtemp = {};
+            JSONtemp.id = dbResult[i].dataValues.id; 
+            JSONtemp.name = dbResult[i].dataValues.courseName;
+            coursesArr.push(JSONtemp);
+        }
+        var coursesJSON = {courses: coursesArr};
+        //console.log(coursesJSON);
+        res.json(coursesJSON);
+    });
+  });
+
+  app.get("/api/homeworks/:courseId", function (req, res) {
+    var courseId;
+    if (req.params.courseId) {
+      courseId = req.params.courseId;
+    }
+    console.log(courseId);
+    db.Homework.findAll({
+      include: [db.Course],
+      where: { CourseId: courseId }
+    })
+      .then((dbResult) => {
+        var homeworkArr = [];
+        for (var i = 0; i < dbResult.length; i++) {
+          var JSONtemp = {};
+          JSONtemp.id = dbResult[i].dataValues.id;
+          JSONtemp.name = dbResult[i].dataValues.name;
+          homeworkArr.push(JSONtemp);
+        }
+        var homeworkJSON = { homeworks: homeworkArr };
+        //console.log(homeworkJSON);
+        res.json(homeworkJSON)
+      });
+  });
 
   app.get("/api/grades/:homeworkid", function (req, res) {
     var query = {};

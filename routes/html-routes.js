@@ -42,16 +42,18 @@ module.exports = function (app) {
   });
 
   app.get("/staff/view_student_list",isStaff, function (req, res) {
-    /*
-    //This need to be changed
-    // Get the studnet and gurdian data. Assign it to hsbObject.
-    burger.selectAll(function(data) {
-      var hbsObject = {
-        burgers: data
-      };
+    db.User.findAll({
+      include: [db.Parent],
+      where: {userType: "student"}
+    })
+    .then((dbResult)=>{
+      var dbResult = JSON.parse(JSON.stringify(dbResult)); 
+      var hbsObject  = { "students" : dbResult };
       res.render("view_student_list", hbsObject);
-    });
-    */  
+    })
+    .catch((err)=>{
+      console.log("err", err);
+    })
   });
 
   app.get("/staff/view_quiz_result",isStaff, function (req, res) {
@@ -65,7 +67,7 @@ module.exports = function (app) {
   });
 
   app.get("/staff/enter_quiz_results",isStaff, function (req, res) {
-    // Use handlebar to rendar it.
+    res.sendFile(path.join(__dirname, "../private/enter_quiz_results.html"));
   });
 
   app.get("/student",isStudent, function (req, res) {

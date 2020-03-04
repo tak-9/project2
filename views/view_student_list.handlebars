@@ -3,7 +3,7 @@
     <div class="columns">
         
         <!-- insert partial\menu_student.handlebars here -->
-        {{> menu_student}}
+        {{> menu_staff}}
 
           <div class="table-container">
             <table class="table is-hoverable is-striped is-narrow">
@@ -20,7 +20,7 @@
                   <th>Guardian Phone</th>
                   <th>Guardian Email</th>
                 </tr>
-                {{#each user}}
+                {{#each students}}
                 <tr>
                     <td>{{id}}</td>
                     <td>{{name}}</td>
@@ -29,9 +29,9 @@
                     <td>{{yeargroup}}</td>
                     <td>{{email}}</td>
                     <td>{{address}}</td>
-                    <td>{{guardianName}}</td>
-                    <td>{{guardianPhone}}</td>
-                    <td>{{guardianEmail}}</td>
+                    <td>{{Parent.name}}</td>
+                    <td>{{Parent.phone}}</td>
+                    <td>{{Parent.email}}</td>
                 </tr>
                 {{/each}}                
               </thead>
