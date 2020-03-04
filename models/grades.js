@@ -7,6 +7,7 @@ module.exports = function (sequelize, DataTypes) {
     },
   });
 
+  /*
   Grades.associate = function (models) {
     Grades.hasOne(models.Homework, {
       foreignKey: {
@@ -14,6 +15,7 @@ module.exports = function (sequelize, DataTypes) {
       }
     });
   };
+  */
 
   Grades.associate = function (models) {
     Grades.belongsTo(models.User, {

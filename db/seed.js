@@ -4,11 +4,13 @@ var db = require("../models");
 cleanUpDb();
 
 async function cleanUpDb(){
-    await db.Parent.destroy({ where: {} })
-    await db.User.destroy({ where: {} })
-    await db.Homework.destroy({ where: {} })
-    await db.Course.destroy({ where: {} })
-    await db.Enrolment.destroy({ where: {} })
+    await db.Parent.destroy({ where: {} });
+    await db.User.destroy({ where: {} });
+    await db.Homework.destroy({ where: {} });
+    await db.Course.destroy({ where: {} });
+    await db.Enrolment.destroy({ where: {} });
+    await db.Grades.destroy({ where: {} });
+    createDummyData();
 }
 
 
@@ -100,28 +102,37 @@ async function createDummyData() {
 var mathCourse;
 var historyCourse;
 var chemistryCourse;
+var mathAddHomework;
+var mathSubtractHomework;
+var mathMultiplyHomework;
+var mathDivideHomework;
+
 async function createHomework() {
     console.log("********* seed.js createHomework() *************")
     mathCourse = await db.Course.create({
         courseName: "Year 8 Math"
     });
     console.log("New Course ID: " , mathCourse.id);
-    await db.Homework.create({
+     mathAddHomework = await db.Homework.create({
         name: "Week 1 Add",
         CourseId: mathCourse.id
     });
-    await db.Homework.create({
+
+     mathSubtractHomework = await db.Homework.create({
         name: "Week 2 Subtract",
         CourseId: mathCourse.id
     });
-    await db.Homework.create({
+
+     mathMultiplyHomework = await db.Homework.create({
         name: "Week 3 Multiply",
         CourseId: mathCourse.id
     });
-    await db.Homework.create({
+
+     mathDivideHomework = await db.Homework.create({
         name: "Week 4 Divide",
         CourseId: mathCourse.id
     });
+
     // -----------------------------------------------------------
     historyCourse = await db.Course.create({
         courseName: "Year 11 History"
@@ -194,10 +205,39 @@ async function createEnrolment() {
         UserId: student3.id
     });
 
-
+    createGrades();
 }
 
+async function createGrades() { 
+    console.log("********* seed.js createGrade() *************")
+    //console.log("mathAddHomework.id", mathAddHomework.id);
+    //console.log("student2.id", student2.id);
+    await db.Grades.create({
+        UserId: student2.id,
+        HomeworkId: mathAddHomework.id,
+        grade: 100
+    });
 
+    await db.Grades.create({
+        UserId: student2.id,
+        HomeworkId: mathSubtractHomework.id,
+        grade:90
+    });
+
+    await db.Grades.create({
+        UserId: student2.id,
+        HomeworkId: mathMultiplyHomework.id,
+        grade: 50
+    });
+
+    await db.Grades.create({
+        UserId: student2.id,
+        HomeworkId: mathDivideHomework.id,
+        grade: 40
+    });
+    console.log("############# Finished creating dummy data by seed.js  ############")
+    return;
+}
 
 
 module.exports = {
