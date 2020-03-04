@@ -10,6 +10,8 @@ async function cleanUpDb(){
 }
 
 async function createUsers() {
+
+    console.log("********* seed.js createUsers() *************")
     await db.User.create({
         name: "TeacherName",
         //    userName: "teacher",
@@ -84,3 +86,6 @@ async function createUsers() {
     })
 } 
 
+module.exports = {
+    createUsers : createUsers
+}

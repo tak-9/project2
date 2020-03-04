@@ -5,11 +5,12 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    /*
     couseId: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
-
+    */
   });
 
   Homework.associate = function (models) {

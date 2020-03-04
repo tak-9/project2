@@ -1,10 +1,12 @@
 module.exports = function (sequelize, DataTypes) {
   var Grades = sequelize.define("Grades", {
-
+    
     grade: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
+    
+    /*
     courseId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -13,10 +15,16 @@ module.exports = function (sequelize, DataTypes) {
     homeworkId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
 
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
-
+    */
   });
+
+  /*
   Grades.associate = function (models) {
     Grades.belongsTo(models.Course, {
       foreignKey: {
@@ -24,9 +32,18 @@ module.exports = function (sequelize, DataTypes) {
       }
     });
   };
+  */
 
   Grades.associate = function (models) {
     Grades.hasOne(models.Homework, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
+  Grades.associate = function (models) {
+    Grades.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
