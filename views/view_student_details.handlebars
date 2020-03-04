@@ -1,38 +1,9 @@
-<!-- 5. Output the animalType string, pet boolean, and fierceness number to the page for all the pets. -->
-<section class="hero">
-    <div class="hero-body">
-        <div class="container">
-            <div class="field is-grouped logout">
-                <div class="control">
-                    <button class="button">Logout</button>
-                </div>
-            </div>
-            <h1 class="title">
-                Proficiency Education
-            </h1>
-
-        </div>
-    </div>
-
-</section>
-
 <div class="container">
     <div class="columns">
-        <div class="column is-one-quarter">
-            <aside class="menu">
 
-                <p class="menu-label">
-                    Student Menu
-                </p>
-                <ul class="menu-list">
-                    <li><a id="studentDetailBtn">Student Details</a></li>
-                    <li><a id="quizResultBtn">View past quiz results</a></li>
-                </ul>
-
-            </aside>
-
-
-        </div>
+        <!-- insert partial\menu_student.handlebars here -->
+        {{> menu_student}}
+<!--
         <div id="quizResults" class="column is-three-quarter hide">
             <label class="classheading">Choose a class:</label>
             <p class="control">
@@ -68,80 +39,78 @@
 
             </table>
         </div>
+-->
         <div id="studentDetails" class='column is-three-quarter show '>
             <h3 class="title">
                 Student Details
             </h3>
             <div class="field">
                 <label class="label">Email (username)</label>
-                <p>{{student.email}}</p>
+                <p>{{email}}</p>
             </div>
 
             <div class="field">
                 <label class="label">First Name</label>
-                <p>{{student.name}}</p>
+                <p>{{name}}</p>
             </div>
             <div class="field">
                 <label class="label">Mobile</label>
-                <p>{{student.phone}}</p>
+                <p>{{phone}}</p>
             </div>
             <div class="field">
                 <label class="label">Date of Birth</label>
-                <p>{{student.bithdate}}</p>
+                <p>{{bithdate}}</p>
             </div>
             <div class="field">
                 <label class="label">Address</label>
-                <p>{{student.address}}</p>
+                <p>{{address}}</p>
             </div>
-        
+
             <div class="field">
                 <label class="label">School</label>
-                <p>{{student.school}}</p>
+                <p>{{school}}</p>
             </div>
 
             <div class="field">
                 <label class="label">Year Group</label>
-                <p>{{student.yeargroup}}</p>
+                <p>{{yeargroup}}</p>
             </div>
 
-
-
-            <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-link">Edit</button>
-                </div>
-
-            </div>
-        </div>
-
-
-        <div id="guardianDetails" class="column is-three-quarter hide ">
-            <br>
             <h3 class="title">
                 Guardian Details
             </h3>
             <div class="field">
                 <label class="label">Email</label>
-                <p>{{parent.email}}</p>
+                <p>{{Parent.email}}</p>
             </div>
 
             <div class="field">
                 <label class="label">Name</label>
-                <p>{{parent.name}}</p>
+                <p>{{Parent.name}}</p>
             </div>
             <div class="field">
                 <label class="label">Mobile</label>
-                <p>{{parent.phone}}</p>
+                <p>{{Parent.phone}}</p>
             </div>
             <div class="field is-grouped">
                 <div class="control">
                     <button class="button is-link">Edit</button>
                 </div>
             </div>
+
+
+            <!--
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link">Edit</button>
+                </div>
+
+            </div>
+        </div>
+        <div id="guardianDetails" class="column is-three-quarter hide ">
+            <br>
+        -->
         </div>
 
     </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../JS/scriptstudent.js"></script>
+</div>
