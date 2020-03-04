@@ -171,28 +171,28 @@ async function createEnrolment() {
 
     console.log("********* seed.js createEnrolment() *************")
     await db.Enrolment.create({
-        courseId: mathCourse.id,
-        studentId: student1.id
+        CourseId: mathCourse.id,
+        UserId: student1.id
     });
 
     await db.Enrolment.create({
-        courseId: mathCourse.id,
-        studentId: student2.id
+        CourseId: mathCourse.id,
+        UserId: student2.id
     });
 
     await db.Enrolment.create({
-        courseId: mathCourse.id,
-        studentId: student3.id
+        CourseId: mathCourse.id,
+        UserId: student3.id
     });
 
     await db.Enrolment.create({
-        courseId: historyCourse.id,
-        studentId: student2.id
+        CourseId: historyCourse.id,
+        UserId: student2.id
     });
 
     await db.Enrolment.create({
-        courseId: chemistryCourse.id,
-        studentId: student3.id
+        CourseId: chemistryCourse.id,
+        UserId: student3.id
     });
 
 
