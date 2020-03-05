@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
   Homework.associate = function (models) {
     Homework.belongsTo(models.Grades, {
       foreignKey: {
-        allowNull: false
+        allowNull: true
       }
     });
   };

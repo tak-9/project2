@@ -44,19 +44,19 @@ module.exports = function (sequelize, DataTypes) {
     }
 
   });
-
   User.associate = function (models) {
     User.belongsTo(models.Parent, {
-        onDelete: "cascade"
+      foreignKey: {
+        allowNull: false
+      }
     });
   };
-
   User.associate = function (models) {
     User.hasMany(models.Enrolment, {
       onDelete: "cascade"
     });
   };
-  
+
   User.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
   };
