@@ -15,5 +15,14 @@ module.exports = function (sequelize, DataTypes) {
       }
     });
   };
+
+  Homework.associate = function (models) {
+    Homework.hasMany(models.Grades, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   return Homework;
 };

@@ -42,18 +42,18 @@ module.exports = function (app) {
   });
 
   app.get("/staff/view_student_list", isStaff, function (req, res) {
-    db.User.findAll({
-      include: [db.Parent],
-      where: { userType: "student" }
-    })
-      .then((dbResult) => {
-        var dbResult = JSON.parse(JSON.stringify(dbResult));
-        var hbsObject = { "students": dbResult };
+    sqlStr =
+    "select u.id as id, u.name as name, address, school, bithdate, u.phone as phone, u.email as email, yeargroup, userType, "+
+    "p.name as parentname, p.phone as parentphone, p.email as parentemail "+
+    "from users u " + 
+    "join parents p on u.ParentId = p.id"
+    
+    db.sequelize.query(sqlStr)
+    .then((dbResult)=>{
+        console.log(dbResult[0]);
+        var hbsObject  = { "students" : dbResult[0] };
         res.render("view_student_list", hbsObject);
-      })
-      .catch((err) => {
-        console.log("err", err);
-      })
+    })
   });
 
   app.get("/staff/view_quiz_result", isStaff, function (req, res) {

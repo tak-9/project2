@@ -10,6 +10,7 @@ async function cleanUpDb(){
     await db.Course.destroy({ where: {} })
     await db.Enrolment.destroy({ where: {} })
  //  await db.Grades.destroy({ where: {} })
+    createDummyData();
 }
 var student1;
 var student2;
@@ -113,18 +114,22 @@ async function createHomework() {
         name: "Week 1 Add",
         CourseId: mathCourse.id
     });
-    await db.Homework.create({
+
+     mathSubtractHomework = await db.Homework.create({
         name: "Week 2 Subtract",
         CourseId: mathCourse.id
     });
-    await db.Homework.create({
+
+     mathMultiplyHomework = await db.Homework.create({
         name: "Week 3 Multiply",
         CourseId: mathCourse.id
     });
-    await db.Homework.create({
+
+     mathDivideHomework = await db.Homework.create({
         name: "Week 4 Divide",
         CourseId: mathCourse.id
     });
+
     // -----------------------------------------------------------
     historyCourse = await db.Course.create({
         courseName: "Year 11 History"
@@ -197,7 +202,7 @@ async function createEnrolment() {
         UserId: student3.id
     });
 
-
+    createGrades();
 }
 
 async function createGrade() {
@@ -224,10 +229,9 @@ async function createGrade() {
         studentId: student2.id,
         homeworkId:math1Hw.id
     });
+    console.log("############# Finished creating dummy data by seed.js  ############")
 
 }
-
-
 
 
 module.exports = {
