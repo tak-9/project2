@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "password",
+    "password": "Rody@1234",
     "database": "Toutoring_center",
     "host": "localhost",
     "dialect": "mysql",

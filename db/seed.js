@@ -90,7 +90,8 @@ async function createDummyData() {
         phoneNumber: "0237890",
         email: "student3@test.com",
         yeargroup: "1",
-        userType: "student"
+        userType: "student",
+        ParentId: newParent2.id
     })
     
     createHomework();        

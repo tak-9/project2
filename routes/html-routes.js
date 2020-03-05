@@ -1,14 +1,12 @@
 var path = require("path");
 var db = require("../models");
+
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 var isStaff = require("../config/middleware/isStaff");
 var isStudent = require("../config/middleware/isStudent");
-
-
 //  we need to change the pages name to the right one 
-/////
-////
+
 module.exports = function (app) {
   // home pages (login page)
   app.get("/", function (req, res) {
@@ -76,9 +74,25 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../private/student.html"));
   });
 
+  /*var dummyStudent = {
+    name: "jack",
+    age: 12
+  }*/
   app.get("/student/view_student_details",isStudent, function (req, res) {
     // Get id of currently logged in student.
+    console.log("app.get / req.user", req.user); 
+      db.User.findOne({
+        include: [db.Parent],
+        where:req.user.id
+      }).then(function (dbUserDetails) { 
+       // res.json(dbUserDetails);
+        console.log("this the user details ",dbUserDetails);
+        var dbUserDetails = JSON.parse(JSON.stringify(dbUserDetails));
+       // var hbsObject  = { "students" : dbUserDetails }; 
+        res.render("view_student_details", dbUserDetails);
+      }).catch(err=>console.log(err));
     // Query student details for the student and gurdian.
+
     // Use handlebar to rendar it.
   });
 
