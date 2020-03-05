@@ -202,7 +202,7 @@ async function createEnrolment() {
         UserId: student3.id
     });
 
-    createGrades();
+    createGrade();
 }
 
 async function createGrade() {
