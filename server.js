@@ -35,7 +35,7 @@ var seed = require("./db/seed.js");
 db.sequelize.sync({force:true}).then(function() {
   app.listen(PORT, async function() {
     // now create dummy users
-    await seed.createDummyData();
+    seed.createDummyData();
     console.log("==> Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
   });
 });
