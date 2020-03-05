@@ -10,18 +10,5 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     }
   });
-
-/*
-  Enrolment.associate = function (models) {
-    Enrolment.hasMany(models.Course, {
-      onDelete: "cascade"
-    });
-  };
-  Enrolment.associate = function (models) {
-    Enrolment.hasMany(models.User, {
-      onDelete: "cascade"
-    });
-  };
-*/
   return Enrolment;
 }
