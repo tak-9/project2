@@ -97,24 +97,20 @@ module.exports = function (app) {
   app.get("/student/view_student_grade", isStudent, function (req, res) {
     // Get id of currently logged in student.
     console.log("app.get / req.user", req.user);
-    db.Grades.findOne({
-      // include: [
-      // db.Homework,
-      // db.Course,
-      // db.Enrolment],
-      where: req.user.id
-    }).then(function (UserGrades) {
-      console.log("this the user Grades ", UserGrades);
-      var UserGrades = JSON.parse(JSON.stringify(UserGrades));
-      var hbsObject = { "students": UserGrades };
-      res.render("view_student_grade", hbsObject);
-    }).catch(function (err) {
+    var myId=req.user.id;
+    var gradeSqlString="SELECT enrolments.UserId,grade,courseName,Homework.name FROM toutoring_center.grades join homework join courses join enrolments on grades.UserId=enrolments.userId;";
+    db.sequelize.query(gradeSqlString).then(function(gradeDetails){
+      console.log(gradeDetails);
+      var userGrades=gradeDetails[0].filter(x=> x.userId === myId);
+      console.log("my grades are : ",userGrades);
+      var userGrades=JSON.parse(JSON.stringify(userGrades));
+      var gradesObj={"students":userGrades[0]};
+      res.render("view_student_grade", gradesObj);
+    })
+ .catch(function (err) {
       // handle error;
       console.log(err)
     });
-    // Query student details for the student and gurdian.
-
-    // Use handlebar to rendar it.
   });
 
 
