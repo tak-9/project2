@@ -98,15 +98,15 @@ module.exports = function (app) {
   app.get("/student/view_student_grade", isStudent, function (req, res) {
     console.log("app.get / req.user", req.user);
    var myId=req.user.id;
-   var sqlString="SELECT Grades.UserId,grade,courseName,Homework.name FROM toutoring_center.grades join homework join courses join enrolments on grades.UserId=enrolments.userId;";
+   var sqlString="SELECT Grades.UserId,grade as courseGrade,courseName as courseName,Homework.name as homeWork FROM toutoring_center.grades join homework join courses join enrolments on grades.homeworkId=homework.id && grades.UserId=enrolments.UserId&& courses.id=enrolments.CourseId;";
    db.sequelize.query(sqlString)
   .then(function (dbUserGrades) {
       console.log("this the user Grades ", dbUserGrades[0]);
       var UserGrades = dbUserGrades[0].filter(x => x.UserId === myId);
-      console.log("my user grades are : --",UserGrades[0]);
+      console.log("my user grades are : --",UserGrades);
       var UserGrades = JSON.parse(JSON.stringify(UserGrades));
-      var hbsObject = { "students": UserGrades[0] };
-      res.render("view_student_grade", hbsObject[0]);
+      var hbsObject = { "courses": UserGrades};
+      res.render("view_student_grade", hbsObject);
     }).catch(function (err) {
       // handle error;
       console.log(err)

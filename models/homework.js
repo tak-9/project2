@@ -9,20 +9,20 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Homework.associate = function (models) {
-    Homework.belongsTo(models.Grades, {
+    Homework.hasOne(models.Grades, {
       foreignKey: {
         allowNull: true
       }
     });
   };
-
+/*
   Homework.associate = function (models) {
-    Homework.hasMany(models.Grades, {
+    Homework.hasMany(models.User, {
       foreignKey: {
         allowNull: false
       }
     });
   };
-
+*/
   return Homework;
 };

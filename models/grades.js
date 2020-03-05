@@ -7,15 +7,14 @@ module.exports = function (sequelize, DataTypes) {
     },
   });
 
-  /*
   Grades.associate = function (models) {
-    Grades.hasOne(models.Homework, {
+    Grades.belongsTo(models.Homework, {
       foreignKey: {
         allowNull: false
       }
     });
   };
-  */
+  
 
   Grades.associate = function (models) {
     Grades.belongsTo(models.User, {
