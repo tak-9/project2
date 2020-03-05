@@ -217,6 +217,7 @@ async function createEnrolment() {
         UserId: student3.id
     });
 
+
     await db.Enrolment.create({
         CourseId: mathCourse.id,
         UserId: student4.id
