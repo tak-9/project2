@@ -35,7 +35,9 @@ var seed = require("./db/seed.js");
 db.sequelize.sync({force:true}).then(function() {
   app.listen(PORT, async function() {
     // now create dummy users
-    await seed.createDummyData();
+    // -- wait for 5 sec --- Troubleshooting for heroku ---
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    seed.createDummyData();
     console.log("==> Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
   });
 });

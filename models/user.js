@@ -1,7 +1,6 @@
 var bcrypt = require("bcryptjs");
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
-    // Giving the Author model a name of type STRING
     name: {
       type: DataTypes.STRING,
       allowNull: true
@@ -44,13 +43,19 @@ module.exports = function (sequelize, DataTypes) {
     }
 
   });
-
   User.associate = function (models) {
     User.belongsTo(models.Parent, {
-        onDelete: "cascade"
+      foreignKey: {
+        allowNull: false
+      }
     });
   };
-  
+  User.associate = function (models) {
+    User.hasMany(models.Enrolment, {
+      onDelete: "cascade"
+    });
+  };
+
   User.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
   };

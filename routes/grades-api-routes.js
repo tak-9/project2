@@ -6,6 +6,83 @@ var db = require("../models");
 // =============================================================
 module.exports = function (app) {
 
+  // Returns name and grades for specified homework id
+  app.get("/api/grades/:courseid/:homeworkid", function (req, res) {
+    var homeworkid;
+    var courseid;
+    if (req.params.homeworkid) {
+      homeworkid = req.params.homeworkid;
+    }
+    if (req.params.courseid) {
+      courseid = req.params.courseid
+    }
+
+    console.log("homeworkid", homeworkid);
+    // Given courseid and homeworkid
+    // Returns userid, user_name, grade for enrolled students
+    var sqlStr = 
+    "select distinct user_id, user_name, grade " +
+    "from users_view " + 
+    "left join grades on users_view.user_id = grades.UserId and HomeworkId = " + homeworkid + 
+    " where course_id = " + courseid ;
+
+    //console.log("******",sqlStr);
+    db.sequelize.query(sqlStr)
+    .then((dbResult)=>{
+        result = dbResult[0];
+        console.log(result);
+        res.json(result);
+
+      })
+
+  });
+
+  app.post("/api/grades", function (req, res) {
+    console.log("post /api/grades", req.body)
+    var gradesArray = req.body.grades;
+    for (var i=0; i<gradesArray.length; i++){
+      // Currently, this just inserts new data only. 
+      // TODO: Check if there is any existing data and then decide insert or update it. 
+      db.Grades.create(gradesArray[i])
+      .then(()=>{
+        console.log("create ok");
+        res.json({});
+      })
+      .catch(()=>{
+        res.status(500).json({"msg": "Database Error."});
+      })
+    }
+  });
+  app.get("/api/enroledstudents/:courseId", function (req, res) {
+    var courseId;
+    if (req.params.courseId) {
+      courseId = req.params.courseId;
+    }
+
+    sqlStr = 
+    "select users.id, users.name " +
+    "from users " +
+    "join enrolments on users.id = enrolments.userId " +
+    "where users.userType = 'student' " +
+    "and enrolments.courseId = "+ courseId + ";"
+    
+    db.sequelize.query(sqlStr)
+    .then((dbResult)=>{
+        result = dbResult[0];
+        var tempArr = [];
+        for (var i=0; i<result.length; i++) {
+            var tempJSON = {};
+            tempJSON.id = result[i].id;
+            tempJSON.name = result[i].name; 
+            tempArr.push(tempJSON);
+        }
+        var outputJSON  = { "students" : tempArr };
+        //console.log(outputJSON);
+        res.json(outputJSON);
+      })
+  });
+
+
   app.get("/api/courses", function (req, res){
     db.Course.findAll()
     .then((dbResult) => {
@@ -17,7 +94,6 @@ module.exports = function (app) {
             coursesArr.push(JSONtemp);
         }
         var coursesJSON = {courses: coursesArr};
-        //console.log(coursesJSON);
         res.json(coursesJSON);
     });
   });
@@ -29,7 +105,6 @@ module.exports = function (app) {
     }
     console.log(courseId);
     db.Homework.findAll({
-      include: [db.Course],
       where: { CourseId: courseId }
     })
       .then((dbResult) => {
@@ -41,11 +116,11 @@ module.exports = function (app) {
           homeworkArr.push(JSONtemp);
         }
         var homeworkJSON = { homeworks: homeworkArr };
-        //console.log(homeworkJSON);
         res.json(homeworkJSON)
       });
   });
 
+  /*
   app.get("/api/grades/:homeworkid", function (req, res) {
     var query = {};
     if (req.params.homeworkId) {
@@ -59,8 +134,7 @@ module.exports = function (app) {
       res.json(dbHomework);
     })
   });
-
-  //put methodes for updating student grade
+  */
 
   app.put("/api/grades/", function (req, res) {
     db.Grades.update(
@@ -73,8 +147,6 @@ module.exports = function (app) {
         res.json(dbgrade);
       });
   });
-
-  //get method for getting all the grades for spisific student
   app.get("/api/grades/:studentid", function (req, res) {
     var query = {};
     if (req.params.studentId) {

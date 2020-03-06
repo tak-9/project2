@@ -4,58 +4,25 @@
         <!-- insert partial\menu_student.handlebars here -->
         {{> menu_student}}
 <!--
-        <div id="quizResults" class="column is-three-quarter hide">
-            <label class="classheading">Choose a class:</label>
-            <p class="control">
-                <span class="select">
-                    <select>
-                        {{#each class}}
-                        <option>
-                            {{classes}}
-                        </option>
-                        {{/each}}
-                    </select>
-                </span>
-            </p>
-            <br>
-            <br>
-            <table class="table">
-
-                <thead>
-                    <tr>
-                        <th>Week</th>
-                        <th>Marks</th>
-                        <th>Full Marks</th>
-                    </tr>
-                </thead>
-                {{#each student}}
-                <tr>
-                    <td>{{week}}</td>
-                    <td>{{quizMarks}}</td>
-                    <td>{{fullMarks}}</td>
-                </tr>
-                {{/each}}
-
-
-            </table>
-        </div>
+        
+            
 -->
         <div id="studentDetails" class='column is-three-quarter show '>
-            <h3 class="title">
+            <h3 class="title1">
                 Student Details
             </h3>
             <div class="field">
                 <label class="label">Email (username)</label>
-                <p>{{email}}</p>
+                <p>{{useremail}}</p>
             </div>
 
             <div class="field">
                 <label class="label">First Name</label>
-                <p>{{name}}</p>
+                <p>{{username}}</p>
             </div>
             <div class="field">
                 <label class="label">Mobile</label>
-                <p>{{phone}}</p>
+                <p>{{userphone}}</p>
             </div>
             <div class="field">
                 <label class="label">Date of Birth</label>
@@ -76,40 +43,23 @@
                 <p>{{yeargroup}}</p>
             </div>
 
-            <h3 class="title">
+            <h3 class="title1">
                 Guardian Details
             </h3>
             <div class="field">
                 <label class="label">Email</label>
-                <p>{{Parent.email}}</p>
+                <p>{{parenetemail}}</p>
             </div>
 
             <div class="field">
                 <label class="label">Name</label>
-                <p>{{Parent.name}}</p>
+                <p>{{parentname}}</p>
             </div>
             <div class="field">
                 <label class="label">Mobile</label>
-                <p>{{Parent.phone}}</p>
-            </div>
-            <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-link">Edit</button>
-                </div>
+                <p>{{parentphone}}</p>
             </div>
 
-
-            <!--
-            <div class="field is-grouped">
-                <div class="control">
-                    <button class="button is-link">Edit</button>
-                </div>
-
-            </div>
-        </div>
-        <div id="guardianDetails" class="column is-three-quarter hide ">
-            <br>
-        -->
         </div>
 
     </div>

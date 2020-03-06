@@ -9,14 +9,30 @@ async function cleanUpDb(){
     await db.Homework.destroy({ where: {} })
     await db.Course.destroy({ where: {} })
     await db.Enrolment.destroy({ where: {} })
+   await db.Grades.destroy({ where: {} })
+    createDummyData();
 }
-
-
 var student1;
 var student2;
 var student3;
+var student4;
 
 async function createDummyData() {
+    console.log("********* seed.js createView() *************")
+    //var createViewSQL = "select * from users"
+    var dropViewSQL = 
+    "DROP VIEW IF EXISTS users_view;"
+
+    var createViewSQL =
+    "CREATE VIEW users_view (user_id, user_name, course_id) AS " + 
+    "SELECT Users.id, Users.name, Enrolments.CourseId " +
+    "FROM Users " +
+    "JOIN Enrolments on Users.id = Enrolments.userId; "
+    console.log(createViewSQL);
+    await db.sequelize.query(dropViewSQL);
+    await db.sequelize.query(createViewSQL);
+
+
     console.log("********* seed.js createUsers() *************")
     await db.User.create({
         name: "TeacherName",
@@ -91,8 +107,23 @@ async function createDummyData() {
         userType: "student",
         ParentId: newParent2.id
     })
-    
-    createHomework();        
+
+    student4 = await db.User.create({
+        name: "Math student",
+        password: "123",
+        address: "Student st Student suburb",
+        school: "2Student's school",
+        birthdate: "date",
+        phoneNumber: "0237890",
+        email: "student4@test.com",
+        yeargroup: "1",
+        userType: "student",
+        ParentId: newParent2.id
+    })
+
+
+    createHomework();
+        
 
 } 
 
@@ -101,28 +132,34 @@ async function createDummyData() {
 var mathCourse;
 var historyCourse;
 var chemistryCourse;
+var bascicChemistryhw;
+var math1Hw;
 async function createHomework() {
     console.log("********* seed.js createHomework() *************")
     mathCourse = await db.Course.create({
         courseName: "Year 8 Math"
     });
     console.log("New Course ID: " , mathCourse.id);
-    await db.Homework.create({
+   math1Hw= await db.Homework.create({
         name: "Week 1 Add",
         CourseId: mathCourse.id
     });
-    await db.Homework.create({
+
+     mathSubtractHomework = await db.Homework.create({
         name: "Week 2 Subtract",
         CourseId: mathCourse.id
     });
-    await db.Homework.create({
+
+     mathMultiplyHomework = await db.Homework.create({
         name: "Week 3 Multiply",
         CourseId: mathCourse.id
     });
-    await db.Homework.create({
+
+     mathDivideHomework = await db.Homework.create({
         name: "Week 4 Divide",
         CourseId: mathCourse.id
     });
+
     // -----------------------------------------------------------
     historyCourse = await db.Course.create({
         courseName: "Year 11 History"
@@ -150,7 +187,7 @@ async function createHomework() {
         courseName: "Year 9 Chemistry"
     });
     console.log("New Course ID: " , mathCourse.id);
-    await db.Homework.create({
+     bascicChemistryhw = await db.Homework.create({
         name: "Week 1 Basic Chemistry",
         CourseId: chemistryCourse.id
     });
@@ -162,8 +199,8 @@ async function createHomework() {
         name: "Week 3 Advance Chemistry",
         CourseId: chemistryCourse.id
     });
-
     createEnrolment();
+  //  createGrade();  
 }
 
 
@@ -171,34 +208,67 @@ async function createEnrolment() {
 
     console.log("********* seed.js createEnrolment() *************")
     await db.Enrolment.create({
-        courseId: mathCourse.id,
-        studentId: student1.id
+        CourseId: mathCourse.id,
+        UserId: student1.id
     });
 
     await db.Enrolment.create({
-        courseId: mathCourse.id,
-        studentId: student2.id
+        CourseId: mathCourse.id,
+        UserId: student2.id
     });
 
     await db.Enrolment.create({
-        courseId: mathCourse.id,
-        studentId: student3.id
+        CourseId: mathCourse.id,
+        UserId: student3.id
     });
 
     await db.Enrolment.create({
-        courseId: historyCourse.id,
-        studentId: student2.id
+        CourseId: historyCourse.id,
+        UserId: student2.id
     });
 
     await db.Enrolment.create({
-        courseId: chemistryCourse.id,
-        studentId: student3.id
+        CourseId: chemistryCourse.id,
+        UserId: student3.id
     });
 
 
+    await db.Enrolment.create({
+        CourseId: mathCourse.id,
+        UserId: student4.id
+    });
+
+
+   // createGrade();
 }
 
+async function createGrade() {
 
+    await db.Grades.create({
+        grade: 50,
+        UserId: student1.id,
+        HomeworkId:bascicChemistryhw.id
+
+    });
+    await db.Grades.create({
+        grade: 150,
+        UserId: student1.id,
+        HomeworkId:math1Hw.id
+    });
+    await db.Grades.create({
+        grade: 99,
+        UserId: student3.id,
+        HomeworkId:math1Hw.id
+    });
+
+    await db.Grades.create({
+        grade: 70,
+        UserId: student2.id,
+        HomeworkId:math1Hw.id
+    });
+    console.log("############# Finished creating dummy data by seed.js  ############")
+
+}
 
 
 module.exports = {

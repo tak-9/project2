@@ -6,5 +6,10 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
           },
     });
+    Course.associate = function (models) {
+        Course.hasMany(models.Enrolment, {
+          onDelete: "cascade"
+        });
+    };
     return Course;
 };

@@ -1,9 +1,9 @@
 .jumbotron {
-    background-color: rgb(107, 106, 101);
+    background-color: rgb(105, 104, 98);
 }
 
-.header {
-    color: white;
+h1 {
+    color:green;
 }
 
 
@@ -31,9 +31,3 @@ html, body {
     /* But also accounting for potential margin-bottom of last child hi*/
     margin-bottom: -50px;
   }
-
-
-
-.push {
-  height: 50px;
-}
