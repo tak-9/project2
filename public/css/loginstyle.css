@@ -2,38 +2,65 @@
     background-color: rgb(107, 106, 101);
 }
 
-.header {
-    color: white;
+.title {
+    color: rgb(104, 6, 6);
+    text-align: center;
+   margin: 30px;
+   font-weight: bolder;
+   font-style: initial;
+   font-family: 'Courier New', Courier, monospace;
+   font-size-adjust: inherit;
 }
 
-
-.page-footer {
-    background-color: rgb(107, 106, 101);
-    position: relative;
- 
-    height: 50px;
+.title1 {
+  color:  rgb(104, 6, 6);
+  text-align: inherit;
+ font-weight: bolder;
+ font-style: initial;
+ font-family: 'Courier New', Courier, monospace;
+ font-size-adjust: inherit;
+ font-size: 24px;
+ margin: 5px;
 }
 
-.footer-copyright {
-    color: white;
-}
 
 html, body {
     height: 100%;
-    margin: 0;
   }
 
 
   .wrapper {
     min-height: 100%;
-  
-    /* Equal to height of footer */
-    /* But also accounting for potential margin-bottom of last child */
     margin-bottom: -50px;
   }
+.menu-label{
+  color: rgb(15, 15, 15);
+  font-size: 24px;
+  font-display:bolder;
+  font-family:'Courier New', Courier, monospace;
+}
 
+.menu-list{
+  color: rgb(15, 15, 15);
+  font-size: 20px;
+  font-display: bolder;
+  font-family:  'Courier New', Courier, monospace;
+}
+#studentDetails{
 
+ padding: 5px;
+ color: rgb(15, 15, 15);
+ margin-bottom: 0px;
+}
+.field{
+   font-display: bold;
+}
+.loginbody{
 
-.push {
-  height: 50px;
+  background-image: url("./pho2.jpg");
+  background-blend-mode: soft-light;
+  background-size:110%;
+  background-position: center;
+  background-blend-mode: lighten;
+  opacity: .8;
 }
