@@ -98,9 +98,9 @@ module.exports = function (app) {
   app.get("/student/view_student_grade", isStudent, function (req, res) {
     console.log("app.get / req.user", req.user);
     var myId = req.user.id;
-    var sqlString = "SELECT Grades.UserId,grade as courseGrade,courseName as courseName,Homework.name as homeWork"+
-    " FROM toutoring_center.grades join homework join courses join enrolments"+
-    " on grades.homeworkId=homework.id && grades.UserId=enrolments.UserId&& courses.id=enrolments.CourseId;";
+    var sqlString = "SELECT Grades.UserId,grade as courseGrade,courseName as courseName,Homework.name as homeWork" +
+      " FROM toutoring_center.grades join homework join courses join enrolments" +
+      " on grades.homeworkId=homework.id && grades.UserId=enrolments.UserId&& courses.id=enrolments.CourseId;";
     db.sequelize.query(sqlString)
       .then(function (dbUserGrades) {
         console.log("this the user Grades ", dbUserGrades[0]);
