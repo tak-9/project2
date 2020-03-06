@@ -18,6 +18,17 @@ var student3;
 var student4;
 
 async function createDummyData() {
+    console.log("********* seed.js createView() *************")
+    //var createViewSQL = "select * from users"
+    var createViewSQL =
+    "CREATE VIEW users_view (user_id, user_name, course_id) AS " + 
+    "SELECT users.id, users.name, enrolments.CourseId " +
+    "FROM users " +
+    "JOIN enrolments on users.id = enrolments.userId; "
+    console.log(createViewSQL);
+    await db.sequelize.query(createViewSQL)
+
+
     console.log("********* seed.js createUsers() *************")
     await db.User.create({
         name: "TeacherName",
@@ -240,13 +251,13 @@ async function createGrade() {
         HomeworkId:math1Hw.id
     });
     await db.Grades.create({
-        grade: 100,
-        UserId: student1.id,
+        grade: 99,
+        UserId: student3.id,
         HomeworkId:math1Hw.id
     });
 
     await db.Grades.create({
-        grade: 150,
+        grade: 70,
         UserId: student2.id,
         HomeworkId:math1Hw.id
     });

@@ -66,7 +66,7 @@ $(document).ready(function () {
     // When course dropdown is changed, update the Homework dropdown menu accordly.
     var numberOfEnroledStudents;
     $("#course").on("change", function () {
-        console.log("course is changed");
+        //console.log("course is changed");
         $("#homework").html("");
         var selectedCourseId = $("#course option:selected").val();
 
@@ -100,14 +100,38 @@ $(document).ready(function () {
         })
     })
 
-    // Disable inputboxes when "Homework" selection is default.
+    // When "Homework" selection is default, disable inputboxes.
+    // Update the table with student names and scores
     $("#homework").on("change", function(){
         var selectedHomeworkId = $("#homework option:selected").val();
+        var selectedCourseId = $("#course option:selected").val();
+
         //console.log(selectedHomeworkId);
         if (selectedHomeworkId == "notselected") {
             $(".input").attr("disabled","disabled");
         } else {
             $(".input").removeAttr("disabled");
+            //Ajax to get the student names and scores
+            var urlEnroledStudents = "/api/grades/" + selectedCourseId + "/" + selectedHomeworkId;
+            //console.log(urlEnroledStudents);
+            $.get(urlEnroledStudents, function(data, status){
+                //console.log("student and score data",data);
+                $("#students_table tbody").html("");
+                numberOfEnroledStudents = data.length;
+
+                for (var i=0; i<data.length; i++){
+                    var tempHTML;
+                    var tempHTMLInputValue = ""; // This is to put the value in textbox                    
+                    if (data[i].grade != null){
+                        tempHTMLInputValue = 'value="' + data[i].grade + '"';
+                    }
+                    //console.log("data[i]", data[i]);
+                    tempHTML = '<tr><td>'+ data[i].user_name + '</td>' +
+                    '<td><input '+ tempHTMLInputValue + 'id="input' + i + '" data-studentid="' + data[i].user_id + '" class="input" type="text" placeholder="Enter student score">' +
+                    '</td></tr>';    
+                    $("#students_table tbody").append(tempHTML);
+                }
+            })
         }
     })
 
@@ -124,19 +148,20 @@ $(document).ready(function () {
         for (var i=0; i<numberOfEnroledStudents; i++){
             var tempJSON = {};
             tempJSON.UserId = $("#input" + i).attr("data-studentid");
-            tempJSON.grade = $("#input" + i).val();
+            tempJSON.grade = $("#input" + i).val()
             tempJSON.HomeworkId = selectedHomeworkId;
             //console.log(tempJSON.name, tempJSON.score);
-            gradesArray.push(tempJSON);
+            if (tempJSON.grade != ""){
+                gradesArray.push(tempJSON);
+            }
         }
         var outputJSON = {grades: gradesArray}
-        console.log(outputJSON);
-        $.post("/api/grades/", outputJSON, function(data, status){
-            console.log("post done");
+        console.log("outputJSON",outputJSON);
+        // TODO: Use bulma modal to display message
+        $.post("/api/grades", outputJSON, function(data, status){
+            //console.log("post done",data);
+            alert("Scores are inserted.");
         })
     })
-
-
-
 
 });

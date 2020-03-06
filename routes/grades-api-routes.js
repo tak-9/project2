@@ -6,11 +6,51 @@ var db = require("../models");
 // =============================================================
 module.exports = function (app) {
 
+  // Returns name and grades for specified homework id
+  app.get("/api/grades/:courseid/:homeworkid", function (req, res) {
+    var homeworkid;
+    var courseid;
+    if (req.params.homeworkid) {
+      homeworkid = req.params.homeworkid;
+    }
+    if (req.params.courseid) {
+      courseid = req.params.courseid
+    }
+
+    console.log("homeworkid", homeworkid);
+    // Given courseid and homeworkid
+    // Returns userid, user_name, grade for enrolled students
+    var sqlStr = 
+    "select distinct user_id, user_name, grade " +
+    "from users_view " + 
+    "left join grades on users_view.user_id = grades.UserId and HomeworkId = " + homeworkid + 
+    " where course_id = " + courseid ;
+
+    //console.log("******",sqlStr);
+    db.sequelize.query(sqlStr)
+    .then((dbResult)=>{
+        result = dbResult[0];
+        console.log(result);
+        res.json(result);
+
+      })
+
+  });
+
   app.post("/api/grades", function (req, res) {
-    console.log(req.body)
+    console.log("post /api/grades", req.body)
     var gradesArray = req.body.grades;
     for (var i=0; i<gradesArray.length; i++){
-      db.Grades.create(gradesArray[i]);
+      // Currently, this just inserts new data only. 
+      // TODO: Check if there is any existing data and then decide insert or update it. 
+      db.Grades.create(gradesArray[i])
+      .then(()=>{
+        console.log("create ok");
+        res.json({});
+      })
+      .catch(()=>{
+        res.status(500).json({"msg": "Database Error."});
+      })
     }
   });
 
@@ -41,7 +81,7 @@ module.exports = function (app) {
             tempArr.push(tempJSON);
         }
         var outputJSON  = { "students" : tempArr };
-        console.log(outputJSON);
+        //console.log(outputJSON);
         res.json(outputJSON);
       })
   });
@@ -86,6 +126,7 @@ module.exports = function (app) {
       });
   });
 
+  /*
   app.get("/api/grades/:homeworkid", function (req, res) {
     var query = {};
     if (req.params.homeworkId) {
@@ -99,6 +140,7 @@ module.exports = function (app) {
       res.json(dbHomework);
     })
   });
+  */
 
   //put methodes for updating student grade
 
