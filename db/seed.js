@@ -20,13 +20,17 @@ var student4;
 async function createDummyData() {
     console.log("********* seed.js createView() *************")
     //var createViewSQL = "select * from users"
+    var dropViewSQL = 
+    "DROP VIEW IF EXISTS users_view;"
+
     var createViewSQL =
     "CREATE VIEW users_view (user_id, user_name, course_id) AS " + 
     "SELECT users.id, users.name, enrolments.CourseId " +
     "FROM users " +
     "JOIN enrolments on users.id = enrolments.userId; "
     console.log(createViewSQL);
-    await db.sequelize.query(createViewSQL)
+    await db.sequelize.query(dropViewSQL);
+    await db.sequelize.query(createViewSQL);
 
 
     console.log("********* seed.js createUsers() *************")

@@ -15,6 +15,8 @@
     "dialect": "mysql",
     "operatorsAliases": false
   },
-  "production": process.env.JAWSDB_URL
-  // For heroku 
+  "production": {
+    "use_env_variable": "JAWSDB_URL",
+    "dialect": "mysql"
+  }
 }
