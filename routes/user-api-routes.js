@@ -11,33 +11,38 @@ module.exports = function (app) {
   });
   //post route for sign up
 
-  app.post("/api/signup", function (req, res) {
+  app.post("/api/signup", async function (req, res) {
     var student = req.body.student;
     var guardian = req.body.guardian;
-    console.log("student", student);
-    console.log("guardian", guardian);
-    db.User.create(student)
-      .then(() => {
-        db.User.findOne({
-          where: {
-            email: student.email
-          }
-        })
-          .then((data) => {
-            guardian.studentid = data.id;
-            db.Parent.create(guardian)
-            res.status(201).json({});
-          })
-          .catch(function (err) {
-            console.log("catch 1", err);
-            res.status(500).json(err);
-          });
+
+    // console.log("student", student);
+    // console.log("guardian", guardian);
+    
+    // 1. Insert gurdian data into 'parents' table'. (Skip 1,2 if guardian email is not supplied)
+    // 2. Then, get the 'id' of the new gurdian from 'parents' table.
+    // 3. Insert student data into 'student' table with parentId.
+    
+    if (guardian.email !== "") {
+      await db.Parent.create(guardian)
+      .then((data)=>{
+        student.ParentId = data.id;
       })
-      .catch(function (err) {
-        console.log("catch 2",err);
-        res.status(500).json(err);
-      });
-  });
+      .catch(() => {
+        res.status(500).json({"msg":"Error in inserting parent."});
+      })  
+    }
+
+    //console.log("student to insert",student);
+
+    await db.User.create(student)
+    .then((data) => {
+      res.status(201).json({});
+    })
+    .catch(function (err) {
+      console.log("catch create student", err);
+      res.status(500).json({"msg": "Error in creating student."});
+    });
+  })
 
   //put route for the student to update his details 
   app.put("/api/signup", function (req, res) {

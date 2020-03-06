@@ -1,0 +1,41 @@
+
+<div class="container">
+    <div class="columns">
+        
+        <!-- insert partial\menu_student.handlebars here -->
+        {{> menu_staff}}
+
+          <div class="table-container">
+            <table class="table is-hoverable is-striped is-narrow">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>School</th>
+                  <th>Year</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>Guardian Name</th>
+                  <th>Guardian Phone</th>
+                  <th>Guardian Email</th>
+                </tr>
+                {{#each students}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{phone}}</td>
+                    <td>{{school}}</td>
+                    <td>{{yeargroup}}</td>
+                    <td>{{email}}</td>
+                    <td>{{address}}</td>
+                    <td>{{Parent.name}}</td>
+                    <td>{{Parent.phone}}</td>
+                    <td>{{Parent.email}}</td>
+                </tr>
+                {{/each}}                
+              </thead>
+            </table>
+          </div>
+        </div>
+    </div>
