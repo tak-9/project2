@@ -25,9 +25,9 @@ async function createDummyData() {
 
     var createViewSQL =
     "CREATE VIEW users_view (user_id, user_name, course_id) AS " + 
-    "SELECT users.id, users.name, enrolments.CourseId " +
-    "FROM users " +
-    "JOIN enrolments on users.id = enrolments.userId; "
+    "SELECT Users.id, Users.name, Enrolments.CourseId " +
+    "FROM Users " +
+    "JOIN Enrolments on Users.id = Enrolments.userId; "
     console.log(createViewSQL);
     await db.sequelize.query(dropViewSQL);
     await db.sequelize.query(createViewSQL);
