@@ -15,6 +15,7 @@ async function cleanUpDb(){
 var student1;
 var student2;
 var student3;
+var student4;
 
 async function createDummyData() {
     console.log("********* seed.js createUsers() *************")
@@ -91,7 +92,21 @@ async function createDummyData() {
         userType: "student",
         ParentId: newParent2.id
     })
-    
+
+    student4 = await db.User.create({
+        name: "Math student",
+        password: "123",
+        address: "Student st Student suburb",
+        school: "2Student's school",
+        birthdate: "date",
+        phoneNumber: "0237890",
+        email: "student4@test.com",
+        yeargroup: "1",
+        userType: "student",
+        ParentId: newParent2.id
+    })
+
+
     createHomework();
         
 
@@ -202,6 +217,13 @@ async function createEnrolment() {
         UserId: student3.id
     });
 
+
+    await db.Enrolment.create({
+        CourseId: mathCourse.id,
+        UserId: student4.id
+    });
+
+
     createGrade();
 }
 
@@ -216,7 +238,11 @@ async function createGrade() {
     await db.Grades.create({
         grade: 150,
         UserId: student1.id,
+<<<<<<< HEAD
         HomeworkId:bascicChemistryhw.id
+=======
+        HomeworkId:math1Hw.id
+>>>>>>> 05fdfa4e3f469037cbe4332030786f925a110f1e
     });
     await db.Grades.create({
         grade: 100,
@@ -226,7 +252,11 @@ async function createGrade() {
 
     await db.Grades.create({
         grade: 150,
+<<<<<<< HEAD
        UserId: student2.id,
+=======
+        UserId: student2.id,
+>>>>>>> 05fdfa4e3f469037cbe4332030786f925a110f1e
         HomeworkId:math1Hw.id
     });
     console.log("############# Finished creating dummy data by seed.js  ############")

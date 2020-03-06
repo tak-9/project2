@@ -6,6 +6,43 @@ var db = require("../models");
 // =============================================================
 module.exports = function (app) {
 
+  app.post("/api/grades", function (req, res) {
+    console.log(req.body)
+    var gradesArray = req.body.grades;
+    for (var i=0; i<gradesArray.length; i++){
+      db.Grades.create(gradesArray[i]);
+    }
+  });
+  app.get("/api/enroledstudents/:courseId", function (req, res) {
+    var courseId;
+    if (req.params.courseId) {
+      courseId = req.params.courseId;
+    }
+
+    sqlStr = 
+    "select users.id, users.name " +
+    "from users " +
+    "join enrolments on users.id = enrolments.userId " +
+    "where users.userType = 'student' " +
+    "and enrolments.courseId = "+ courseId + ";"
+    
+    db.sequelize.query(sqlStr)
+    .then((dbResult)=>{
+        result = dbResult[0];
+        var tempArr = [];
+        for (var i=0; i<result.length; i++) {
+            var tempJSON = {};
+            tempJSON.id = result[i].id;
+            tempJSON.name = result[i].name; 
+            tempArr.push(tempJSON);
+        }
+        var outputJSON  = { "students" : tempArr };
+        console.log(outputJSON);
+        res.json(outputJSON);
+      })
+  });
+
+
   app.get("/api/courses", function (req, res){
     db.Course.findAll()
     .then((dbResult) => {
@@ -17,7 +54,6 @@ module.exports = function (app) {
             coursesArr.push(JSONtemp);
         }
         var coursesJSON = {courses: coursesArr};
-        //console.log(coursesJSON);
         res.json(coursesJSON);
     });
   });
@@ -29,7 +65,6 @@ module.exports = function (app) {
     }
     console.log(courseId);
     db.Homework.findAll({
-      include: [db.Course],
       where: { CourseId: courseId }
     })
       .then((dbResult) => {
@@ -41,7 +76,6 @@ module.exports = function (app) {
           homeworkArr.push(JSONtemp);
         }
         var homeworkJSON = { homeworks: homeworkArr };
-        //console.log(homeworkJSON);
         res.json(homeworkJSON)
       });
   });
@@ -60,8 +94,6 @@ module.exports = function (app) {
     })
   });
 
-  //put methodes for updating student grade
-
   app.put("/api/grades/", function (req, res) {
     db.Grades.update(
       req.body,
@@ -73,8 +105,6 @@ module.exports = function (app) {
         res.json(dbgrade);
       });
   });
-
-  //get method for getting all the grades for spisific student
   app.get("/api/grades/:studentid", function (req, res) {
     var query = {};
     if (req.params.studentId) {

@@ -4,9 +4,15 @@ module.exports = function (sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+
+    CourseId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
 
   });
+  
 
   Homework.associate = function (models) {
     Homework.hasOne(models.Grades, {
@@ -15,7 +21,6 @@ module.exports = function (sequelize, DataTypes) {
       }
     });
   };
-/*
   Homework.associate = function (models) {
     Homework.hasMany(models.User, {
       foreignKey: {
@@ -23,6 +28,6 @@ module.exports = function (sequelize, DataTypes) {
       }
     });
   };
-*/
+
   return Homework;
 };

@@ -67,30 +67,20 @@
                     </select>
                 </span>
 
-
-
                 <br>
                 <br>
-                <table class="table">
-
+                When a course is selected, enroled students for the course are displayed. 
+                <br>
+                <table id="students_table" class="table">
                     <thead>
                         <tr>
                             <th>Student Name</th>
                             <th>Score</th>
                         </tr>
                     </thead>
-                    <tr>
-                        <td>Daniel Xu</td>
-                        <td>
-                            <input class="input" type="text" placeholder="Enter student score">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Harrison Ford</td>
-                        <td>
-                            <input class="input" type="text" placeholder="Enter student score">
-                        </td>
-                    </tr>
+                    <tbody>
+                        <!-- This is to be added by Ajax JSON -->
+                    </tbody>
                 </table>
                 <button id="save" class="button is-link">Save results</button>
                 <button class="button is-danger">Send results to parents</button>
