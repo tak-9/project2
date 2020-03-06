@@ -58,13 +58,16 @@ function sendEnrolData(enrolData) {
     $.post("/api/signup", enrolData, function (data) {
         //This alert should be removed later!
         alert("Enrolled successfully.", data);
+    }
+    /*
+    //TODO:Fix this.
+    .fail(function (err) {
+        // If there's an error, log the error
+        console.log(err.responseJSON);
+        alert("Error in enrolment.");
     })
-        .fail(function (err) {
-            // If there's an error, log the error
-            console.log(err.responseJSON);
-            alert("Error in enrolment.");
-        });
-
+    )
+    */
 
 
 }
