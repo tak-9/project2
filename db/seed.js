@@ -9,7 +9,7 @@ async function cleanUpDb(){
     await db.Homework.destroy({ where: {} })
     await db.Course.destroy({ where: {} })
     await db.Enrolment.destroy({ where: {} })
- //  await db.Grades.destroy({ where: {} })
+   await db.Grades.destroy({ where: {} })
     createDummyData();
 }
 var student1;
@@ -185,7 +185,7 @@ async function createHomework() {
         CourseId: chemistryCourse.id
     });
     createEnrolment();
-   // createGrade();  
+  //  createGrade();  
 }
 
 
@@ -224,7 +224,7 @@ async function createEnrolment() {
     });
 
 
-    createGrade();
+   // createGrade();
 }
 
 async function createGrade() {

@@ -13,10 +13,6 @@ module.exports = function (app) {
       db.Grades.create(gradesArray[i]);
     }
   });
-
-
-  // Returns enrolled student for a specified course
-  // Input parameter: courseId
   app.get("/api/enroledstudents/:courseId", function (req, res) {
     var courseId;
     if (req.params.courseId) {
@@ -58,7 +54,6 @@ module.exports = function (app) {
             coursesArr.push(JSONtemp);
         }
         var coursesJSON = {courses: coursesArr};
-        //console.log(coursesJSON);
         res.json(coursesJSON);
     });
   });
@@ -81,7 +76,6 @@ module.exports = function (app) {
           homeworkArr.push(JSONtemp);
         }
         var homeworkJSON = { homeworks: homeworkArr };
-        //console.log(homeworkJSON);
         res.json(homeworkJSON)
       });
   });
@@ -100,8 +94,6 @@ module.exports = function (app) {
     })
   });
 
-  //put methodes for updating student grade
-
   app.put("/api/grades/", function (req, res) {
     db.Grades.update(
       req.body,
@@ -113,8 +105,6 @@ module.exports = function (app) {
         res.json(dbgrade);
       });
   });
-
-  //get method for getting all the grades for spisific student
   app.get("/api/grades/:studentid", function (req, res) {
     var query = {};
     if (req.params.studentId) {
