@@ -56,12 +56,13 @@ module.exports = function (sequelize, DataTypes) {
       onDelete: "cascade"
     });
   };
-
+/*
   User.associate = function (models) {
     User.hasMany(models.Homework, {
       onDelete: "cascade"
     });
   };
+  */
 
 
   User.prototype.validPassword = function (password) {
