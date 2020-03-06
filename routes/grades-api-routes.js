@@ -23,7 +23,7 @@ module.exports = function (app) {
     var sqlStr = 
     "select distinct user_id, user_name, grade " +
     "from users_view " + 
-    "left join grades on users_view.user_id = grades.UserId and HomeworkId = " + homeworkid + 
+    "left join Grades on users_view.user_id = Grades.UserId and HomeworkId = " + homeworkid + 
     " where course_id = " + courseid ;
 
     //console.log("******",sqlStr);
@@ -61,10 +61,10 @@ module.exports = function (app) {
 
     sqlStr = 
     "select users.id, users.name " +
-    "from users " +
-    "join enrolments on users.id = enrolments.userId " +
-    "where users.userType = 'student' " +
-    "and enrolments.courseId = "+ courseId + ";"
+    "from Users " +
+    "join Enrolments on users.id = Enrolments.userId " +
+    "where Users.userType = 'student' " +
+    "and Enrolments.courseId = "+ courseId + ";"
     
     db.sequelize.query(sqlStr)
     .then((dbResult)=>{

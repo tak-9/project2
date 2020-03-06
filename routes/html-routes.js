@@ -45,8 +45,8 @@ module.exports = function (app) {
     sqlStr =
       "select u.id as id, u.name as name, address, school, bithdate, u.phone as phone, u.email as email, yeargroup, userType, " +
       "p.name as parentname, p.phone as parentphone, p.email as parentemail " +
-      "from users u " +
-      "join parents p on u.ParentId = p.id"
+      "from Users u " +
+      "join Parents p on u.ParentId = p.id"
 
     db.sequelize.query(sqlStr)
       .then((dbResult) => {
@@ -82,8 +82,8 @@ module.exports = function (app) {
     var sqlStr =
       "select u.id as userId, u.name as username, address, school, bithdate, u.phone as userphone, u.email as useremail, yeargroup, userType, " +
       "p.name as parentname, p.phone as parentphone, p.email as parenetemail " +
-      "from users u " +
-      "inner join parents p on u.ParentId = p.id";
+      "from Users u " +
+      "inner join Parents p on u.ParentId = p.id";
     db.sequelize.query(sqlStr)
       .then(function (dbUserDetails) {
         console.log("this the user details ", dbUserDetails);
@@ -99,8 +99,8 @@ module.exports = function (app) {
     console.log("app.get / req.user", req.user);
     var myId = req.user.id;
     var sqlString = "SELECT Grades.UserId,grade as courseGrade,courseName as courseName,Homework.name as homeWork" +
-      " FROM toutoring_center.grades join homework join courses join enrolments" +
-      " on grades.homeworkId=homework.id && grades.UserId=enrolments.UserId&& courses.id=enrolments.CourseId;";
+      " FROM Grades join homework join courses join Enrolments" +
+      " on Grades.homeworkId=homework.id && Grades.UserId=Enrolments.UserId&& Courses.id=Enrolments.CourseId;";
     db.sequelize.query(sqlString)
       .then(function (dbUserGrades) {
         console.log("this the user Grades ", dbUserGrades[0]);
