@@ -60,9 +60,9 @@ module.exports = function (app) {
     }
 
     sqlStr = 
-    "select users.id, users.name " +
+    "select Users.id, Users.name " +
     "from Users " +
-    "join Enrolments on users.id = Enrolments.userId " +
+    "join Enrolments on Users.id = Enrolments.userId " +
     "where Users.userType = 'student' " +
     "and Enrolments.courseId = "+ courseId + ";"
     

@@ -99,8 +99,8 @@ module.exports = function (app) {
     console.log("app.get / req.user", req.user);
     var myId = req.user.id;
     var sqlString = "SELECT Grades.UserId,grade as courseGrade,courseName as courseName,Homework.name as homeWork" +
-      " FROM Grades join homework join courses join Enrolments" +
-      " on Grades.homeworkId=homework.id && Grades.UserId=Enrolments.UserId&& Courses.id=Enrolments.CourseId;";
+      " FROM Grades join Homework join courses join Enrolments" +
+      " on Grades.homeworkId=Homework.id && Grades.UserId=Enrolments.UserId&& Courses.id=Enrolments.CourseId;";
     db.sequelize.query(sqlString)
       .then(function (dbUserGrades) {
         console.log("this the user Grades ", dbUserGrades[0]);
