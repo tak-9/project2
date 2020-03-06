@@ -16,5 +16,5 @@
     "operatorsAliases": false
   },
   "production": process.env.JAWSDB_URL
-  // For heroku  
+  // For heroku 
 }
