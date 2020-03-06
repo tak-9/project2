@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Rody@1234",
+    "password": "password",
     "database": "Toutoring_center",
     "host": "localhost",
     "dialect": "mysql",
@@ -15,12 +15,6 @@
     "dialect": "mysql",
     "operatorsAliases": false
   },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
-  }
+  "production": process.env.JAWSDB_URL
+  // For heroku 
 }
