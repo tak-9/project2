@@ -1,5 +1,7 @@
 var db = require("../models");
 var passport = require("../config/passport");
+var TMClient = require('textmagic-rest-client');
+
 //routes
 module.exports = function (app) {
 
@@ -52,4 +54,32 @@ module.exports = function (app) {
     req.logout();
     res.redirect("/");
   });
+
+
+
+  
+  app.post("/api/message", function(req, res) {
+    //console.log("********** req ********  ", req);
+    
+    var numberOfUser = req.body.numberToSend;
+    var messageToSend = req.body.messageToSend;
+
+    console.log("student", numberOfUser);
+    console.log("guardian", messageToSend);
+
+    var txt = new TMClient('danielxu', '3FRA3hlcrdRQqQm9VAM50QCpikNmTd');
+
+
+    txt.Messages.send({
+      text: messageToSend, 
+      phones: numberOfUser
+    }, function(err, res){
+        console.log('Messages.send()', err, res);
+    
+    });
+      
+
+  });
+
+
 };
