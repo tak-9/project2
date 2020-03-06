@@ -66,8 +66,8 @@ function sendEnrolData(enrolData) {
         console.log(err.responseJSON);
         alert("Error in enrolment.");
     })
-    )
     */
+   )
 
 
 }
