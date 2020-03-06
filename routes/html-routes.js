@@ -56,6 +56,11 @@ module.exports = function (app) {
       })
   });
 
+  app.get("/staff/message", isStaff, function (req, res) {
+    res.sendFile(path.join(__dirname, "../private/message.html"));
+  });
+
+
   app.get("/staff/view_quiz_result", isStaff, function (req, res) {
     // Query quiz result.
     // Pass query result to handlebar and rendar it.

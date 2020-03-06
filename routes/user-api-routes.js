@@ -57,29 +57,42 @@ module.exports = function (app) {
 
 
 
-  
+  // This is for sending message
   app.post("/api/message", function(req, res) {
     //console.log("********** req ********  ", req);
     
-    var numberOfUser = req.body.numberToSend;
+    var phoneNumber = req.body.numberToSend;
     var messageToSend = req.body.messageToSend;
+    
+    // Get APIKEY and APIUSERNAME from environment variables.
+    var APIKEY = process.env.APIKEY;
+    var APIUSERNAME = process.env.APIUSERNAME;
+    console.log(APIKEY, APIUSERNAME)
+    console.log("phone", phoneNumber);
+    console.log("messageToSend", messageToSend);
 
-    console.log("student", numberOfUser);
-    console.log("guardian", messageToSend);
-
-    var txt = new TMClient('danielxu', '3FRA3hlcrdRQqQm9VAM50QCpikNmTd');
-
+    var txt; 
+    try {
+      txt = new TMClient(APIUSERNAME, APIKEY);
+    } catch (err) {
+      // When APIKEY is not given, error thrown from TMClient.
+      console.log("TMCClient ERROR: ",err);
+      res.status(400).json({msg: err});
+      return;
+    }
 
     txt.Messages.send({
       text: messageToSend, 
-      phones: numberOfUser
-    }, function(err, res){
-        console.log('Messages.send()', err, res);
-    
+      phones: phoneNumber
+    }, function(error, response){
+      console.log('Messages.send()xxxx', error, response);
+      if (error){
+        res.status(400).json({msg: error.message});
+      } else {
+        res.json({msg: "Message sent."});
+      }
     });
-      
 
   });
-
 
 };

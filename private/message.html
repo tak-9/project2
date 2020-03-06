@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <!--link rel="stylesheet" href="/css/loginstyle.css"-->   
+  <script src="/js/scriptmessage.js"></script>
 </head>
 
 <body>
@@ -46,11 +47,42 @@
 
       </div>
       <div id="rightside" class="column is-three-quarter show">
-        <h4 class="title is-4">Welcome to staff's page!</h3>
-        <br>
-        Select an item from menu.
+        <section class="section">
+          <div class="container">
+            <div class="columns">
+              <div class="column is-half">
+  
+                <div class="field">
+                  <h4 class="title is-4">Send SMS</h4><br>
+                  <label class="label">Phone Number to SMS</label>
+                  <div class="control">
+                    <input class="input" id="studentNum" type="text" placeholder="">
+                  </div>
+                </div>
+  
+                <div class="field">
+                  <label class="label">Message</label>
+                  <div class="control">
+                    <textarea class="textarea" id="messages" placeholder="Message"></textarea>
+                  </div>
+                </div>
+  
+               
+                <div class="field is-grouped">
+                  <div class="control">
+                    <button class="button is-link" id="sendMsg">Send</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column"></div>
       </div>
+  
+    </div>
+    </section>
 
 </body>
-
+</html>
+</body>
 </html>

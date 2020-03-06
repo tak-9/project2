@@ -1,65 +1,32 @@
 $(document).ready(function () {
+    var submitBtn = $("#sendMsg");
 
-var submitBtn = $("#sendMsg");
+    submitBtn.on("click", function () {
 
-var clearBtn = $("#clearBtn");
+        var number = $("#studentNum").val().trim();
+        var message = $("#messages").val();
 
-
-submitBtn.on("click", function(){
-
-    var number = $("#studentNum").val().trim();
-    // var number = arrayOfNumbers.join();
-    // var number = $("#studentNum").val().trim();
-    var message = $("#messages").val();
-
-    console.log(message)
-    console.log(number)
+        console.log(message)
+        console.log(number)
 
 
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:8080/api/message",
-        data: { 
-               "numberToSend": number, 
-               "messageToSend": message, 
-          },
-        //dataType: "json",
-        //contentType : "application/json;charset=utf-8",
-        success: function(data)
-        {
-            console.log(data);
-        },
-        error: function(data) {
-            console.log(data);
-        }
-      });
- 
-    //   e.preventDefault();
- });
+        $.ajax({
+            type: "POST",
+            url: "/api/message",
+            data: {
+                "numberToSend": $('#studentNum').val().trim(),
+                "messageToSend": $('#messages').val(),
+            },
+            success: function (data) {
+                console.log(data);
+                alert(data.msg);
+            },
+            error: function (data) {
+                console.log(data);
+                alert(data.responseJSON.msg);
+            }
+        });
 
+    });
 
- clearBtn.on("click", function () {
-
-
-    var number = $("#studentNum");
-    var message = $("#messages");
-    number.val("");
-    message.val("");
-
-    console.log("clears everything")
-
-
-
-
-
-});
-
-
- 
-
-
-  })
-
-
-
-
+})
