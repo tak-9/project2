@@ -127,7 +127,7 @@ $(document).ready(function () {
                     }
                     //console.log("data[i]", data[i]);
                     tempHTML = '<tr><td>'+ data[i].user_name + '</td>' +
-                    '<td><input '+ tempHTMLInputValue + 'id="input' + i + '" data-studentid="' + data[i].user_id + '" class="input" type="text" placeholder="Enter student score">' +
+                    '<td><input '+ tempHTMLInputValue + 'id="input' + i + '" data-studentid="' + data[i].user_id + '" data-gradesid="' + data[i].grades_id + '" class="input" type="text" placeholder="Enter student score">' +
                     '</td></tr>';    
                     $("#students_table tbody").append(tempHTML);
                 }
@@ -137,6 +137,7 @@ $(document).ready(function () {
 
     
     $("#save").on("click", function(){
+        console.log("save");
         var gradesArray = [];
         //console.log(numberOfEnroledStudents);
         var selectedHomeworkId = $("#homework option:selected").val();
@@ -150,6 +151,7 @@ $(document).ready(function () {
             tempJSON.UserId = $("#input" + i).attr("data-studentid");
             tempJSON.grade = $("#input" + i).val()
             tempJSON.HomeworkId = selectedHomeworkId;
+            tempJSON.grades_id = $("#input" + i).attr("data-gradesid");
             //console.log(tempJSON.name, tempJSON.score);
             if (tempJSON.grade != ""){
                 gradesArray.push(tempJSON);
@@ -161,6 +163,10 @@ $(document).ready(function () {
         $.post("/api/grades", outputJSON, function(data, status){
             //console.log("post done",data);
             alert("Scores are inserted.");
+        })
+        .fail(
+        function(data,status){
+            alert("Error ",data);
         })
     })
 

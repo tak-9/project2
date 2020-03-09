@@ -58,18 +58,12 @@ function sendEnrolData(enrolData) {
     $.post("/api/signup", enrolData, function (data) {
         //This alert should be removed later!
         alert("Enrolled successfully.", data);
-    }
-    /*
-    //TODO:Fix this.
-    .fail(function (err) {
+    })
+    .fail( function (err) {
         // If there's an error, log the error
         console.log(err.responseJSON);
         alert("Error in enrolment.");
     })
-    */
-   )
-
-
 }
 
 
@@ -80,8 +74,8 @@ function validatePassword() {
     var verify = $("#verifyPassword").val().trim();
 
     if (password === verify) {
-        return true;
         console.log("signup successful")
+        return true;
     } else {
         alert("password does not match")
         return false;

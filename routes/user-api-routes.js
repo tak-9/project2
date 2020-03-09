@@ -14,25 +14,35 @@ module.exports = function (app) {
   app.post("/api/signup", async function (req, res) {
     var student = req.body.student;
     var guardian = req.body.guardian;
+    var resultOK = true;
 
     if (guardian.email !== "") {
       await db.Parent.create(guardian)
         .then((data) => {
+          console.log("aaaa");
           student.ParentId = data.id;
+          resultOK = true;
         })
         .catch(() => {
-          res.status(500).json({ "msg": "Error in inserting parent." });
+          resultOK = false;
         })
     }
 
     await db.User.create(student)
       .then((data) => {
-        res.status(201).json({});
+        resultOK = true;
       })
       .catch(function (err) {
         console.log("catch create student", err);
-        res.status(500).json({ "msg": "Error in creating student." });
+        resultOK = false;
       });
+
+      if (resultOK){
+        res.status(201).json({});
+      } else {
+        res.status(500).json({ "msg": "Error in creating student." });
+      }
+
   })
 
   //put route for the student to update his details 

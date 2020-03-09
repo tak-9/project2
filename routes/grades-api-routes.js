@@ -21,7 +21,7 @@ module.exports = function (app) {
     // Given courseid and homeworkid
     // Returns userid, user_name, grade for enrolled students
     var sqlStr = 
-    "select distinct user_id, user_name, grade " +
+    "select distinct user_id, user_name, grade, grades.id as grades_id " +
     "from users_view " + 
     "left join Grades on users_view.user_id = Grades.UserId and HomeworkId = " + homeworkid + 
     " where course_id = " + courseid ;
@@ -40,19 +40,33 @@ module.exports = function (app) {
   app.post("/api/grades", function (req, res) {
     console.log("post /api/grades", req.body)
     var gradesArray = req.body.grades;
+    var createOK = true;
     for (var i=0; i<gradesArray.length; i++){
       // Currently, this just inserts new data only. 
       // TODO: Check if there is any existing data and then decide insert or update it. 
-      db.Grades.create(gradesArray[i])
-      .then(()=>{
-        console.log("create ok");
-        res.json({});
-      })
-      .catch(()=>{
-        res.status(500).json({"msg": "Database Error."});
-      })
+      console.log("gradesArray", gradesArray[i].grades_id);
+      if (gradesArray[i].grades_id == null) {
+        // TODO: Update if entry does not exist.
+      } else {
+        // Insert if entry already exists.
+        db.Grades.create(gradesArray[i])
+        .then(()=>{
+          console.log("create ok");
+        })
+        .catch(()=>{
+          console.log("create error");
+          createOK = false;
+        })
+      }
+    } // End for loop
+
+    if (createOK) {
+      res.json({});
+    } else {
+      res.status(500).json({"msg": "Database Error."});
     }
   });
+
   app.get("/api/enroledstudents/:courseId", function (req, res) {
     var courseId;
     if (req.params.courseId) {
