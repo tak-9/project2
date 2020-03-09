@@ -45,7 +45,7 @@ module.exports = function (app) {
       // Currently, this just inserts new data only. 
       // TODO: Check if there is any existing data and then decide insert or update it. 
       console.log("gradesArray", gradesArray[i].grades_id);
-      if (gradesArray[i].grades_id == null) {
+      if (gradesArray[i].grades_id != null) {
         // TODO: Update if entry does not exist.
       } else {
         // Insert if entry already exists.
