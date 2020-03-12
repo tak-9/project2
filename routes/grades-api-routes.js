@@ -37,32 +37,66 @@ module.exports = function (app) {
 
   });
 
-  app.post("/api/grades", function (req, res) {
+  app.post("/api/grades", async function (req, res) {
     console.log("post /api/grades", req.body)
     var gradesArray = req.body.grades;
     var createOK = true;
+    var responseArray = [];
     for (var i=0; i<gradesArray.length; i++){
-      // Currently, this just inserts new data only. 
-      // TODO: Check if there is any existing data and then decide insert or update it. 
-      console.log("gradesArray", gradesArray[i].grades_id);
-      if (gradesArray[i].grades_id != null) {
-        // TODO: Update if entry does not exist.
-      } else {
-        // Insert if entry already exists.
-        db.Grades.create(gradesArray[i])
-        .then(()=>{
+      console.log("gradesArray[i].grades_id", gradesArray[i].grades_id);
+      if (gradesArray[i].grades_id == 'null') {
+        // INSERT INTO DB if it's new entry.
+        //console.log("gradesArray[",i,"]",gradesArray[i]);
+        var tempJSON = {};
+        tempJSON.user_id = gradesArray[i].UserId;
+        tempJSON.user_name = gradesArray[i].student_name;
+        tempJSON.grade = gradesArray[i].grade;
+  
+        await db.Grades.create(gradesArray[i])
+        .then((dbResult)=>{
+          //console.log("create ok",dbResult);
           console.log("create ok");
+          tempJSON.grades_id = dbResult.dataValues.id; // This is the new id assigned
+          responseArray.push(tempJSON);
         })
-        .catch(()=>{
-          console.log("create error");
+        .catch((error)=>{
+          console.log("create error", error);
+          createOK = false;
+        })
+      } else {
+        var tempJSON = {};
+        console.log("gradesArray[i]---", gradesArray[i]);
+        tempJSON.user_id = gradesArray[i].UserId;
+        tempJSON.user_name = gradesArray[i].student_name;
+        tempJSON.grade = gradesArray[i].grade;
+        tempJSON.grades_id = gradesArray[i].grades_id; 
+        responseArray.push(tempJSON);
+
+        // UPDATE DB if entry exists already.
+        sqlStr = "UPDATE Grades "  +
+        " SET grade =  " + gradesArray[i].grade +
+        " WHERE id = " + gradesArray[i].grades_id;
+       
+        await db.sequelize.query(sqlStr)
+        .then((dbResult)=>{
+          console.log("update ok");
+            // result = dbResult[0];
+            // console.log(result);
+        })
+        .catch((error)=>{
+          console.log("update error", error);
           createOK = false;
         })
       }
     } // End for loop
 
+
+    console.log("loopend");
     if (createOK) {
-      res.json({});
+      console.log("responseArray",responseArray);
+      res.json(responseArray);
     } else {
+      console.log("database error");
       res.status(500).json({"msg": "Database Error."});
     }
   });

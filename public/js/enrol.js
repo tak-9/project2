@@ -55,7 +55,8 @@ $(document).ready(function () {
 
 function sendEnrolData(enrolData) {
     console.log("sending...");
-    $.post("/api/signup", enrolData, function (data) {
+    $.post("/api/signup", enrolData)
+    .done(function (data) {
         //This alert should be removed later!
         alert("Enrolled successfully.", data);
     })
