@@ -55,18 +55,16 @@ $(document).ready(function () {
 
 function sendEnrolData(enrolData) {
     console.log("sending...");
-    $.post("/api/signup", enrolData, function (data) {
+    $.post("/api/signup", enrolData)
+    .done(function (data) {
         //This alert should be removed later!
         alert("Enrolled successfully.", data);
     })
-        .fail(function (err) {
-            // If there's an error, log the error
-            console.log(err.responseJSON);
-            alert("Error in enrolment.");
-        });
-
-
-
+    .fail( function (err) {
+        // If there's an error, log the error
+        console.log(err.responseJSON);
+        alert("Error in enrolment.");
+    })
 }
 
 
@@ -77,8 +75,8 @@ function validatePassword() {
     var verify = $("#verifyPassword").val().trim();
 
     if (password === verify) {
-        return true;
         console.log("signup successful")
+        return true;
     } else {
         alert("password does not match")
         return false;

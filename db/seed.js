@@ -239,32 +239,41 @@ async function createEnrolment() {
     });
 
 
-   // createGrade();
+    createGrade();
 }
 
 async function createGrade() {
+    console.log("********* seed.js createGrade() *************")
+    await db.Grades.create({
+        grade: 100,
+        UserId: student1.id,
+        HomeworkId:math1Hw.id
+
+    });
+    await db.Grades.create({
+        grade: 90,
+        UserId: student2.id,
+        HomeworkId:math1Hw.id
+
+    });
+    await db.Grades.create({
+        grade: 80,
+        UserId: student3.id,
+        HomeworkId:math1Hw.id
+
+    });
+    await db.Grades.create({
+        grade: 70,
+        UserId: student4.id,
+        HomeworkId:math1Hw.id
+
+    });
 
     await db.Grades.create({
         grade: 50,
         UserId: student1.id,
         HomeworkId:bascicChemistryhw.id
 
-    });
-    await db.Grades.create({
-        grade: 150,
-        UserId: student1.id,
-        HomeworkId:math1Hw.id
-    });
-    await db.Grades.create({
-        grade: 99,
-        UserId: student3.id,
-        HomeworkId:math1Hw.id
-    });
-
-    await db.Grades.create({
-        grade: 70,
-        UserId: student2.id,
-        HomeworkId:math1Hw.id
     });
     console.log("############# Finished creating dummy data by seed.js  ############")
 

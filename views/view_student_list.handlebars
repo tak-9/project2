@@ -1,3 +1,4 @@
+<script src="/js/sms.js"></script>
 
 <div class="container">
     <div class="columns">
@@ -9,6 +10,11 @@
             <table class="table is-hoverable is-striped is-narrow">
               <thead>
                 <tr>
+                  <th>
+                    <div class="buttons">
+                      <button id="addAll" class="button is-light">All</button>
+                    </div>
+                  </th>
                   <th>ID</th>
                   <th>Name</th>
                   <th>Phone</th>
@@ -22,9 +28,14 @@
                 </tr>
                 {{#each students}}
                 <tr>
+                    <td>
+                      <div class="buttons">
+                      <button id="addNumber" class="button is-white addNumber">+</button>
+                    </div>
+                    </td>
                     <td>{{id}}</td>
                     <td>{{name}}</td>
-                    <td>{{phone}}</td>
+                    <td class="mobileNumber">{{phone}}</td>
                     <td>{{school}}</td>
                     <td>{{yeargroup}}</td>
                     <td>{{email}}</td>
@@ -36,6 +47,49 @@
                 {{/each}}                
               </thead>
             </table>
+
+
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-half">
+            <div class="field">
+              <label class="label">Send SMS To</label>
+              <div class="control">
+                <input class="input" id="studentNumInput" type="text" placeholder="">
+              </div>
+            </div>
+            <!--
+            <div class="field">
+              <label class="label">Send via:</label>
+              <div class="control">
+                <div class="select">
+                  <select>
+                    <option>SMS</option>
+                    <option>Email</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            -->
+            <div class="field">
+              <label class="label">Message</label>
+              <div class="control">
+                <textarea class="textarea" id="messages" placeholder="Message"></textarea>
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-link" id="sendMsg">Send to all</button>
+              </div>
+              <div class="control">
+                <button id="clearBtn" class="button is-link is-light">Clear</button>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>

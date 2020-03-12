@@ -21,9 +21,9 @@ module.exports = function (app) {
     // Given courseid and homeworkid
     // Returns userid, user_name, grade for enrolled students
     var sqlStr = 
-    "select distinct user_id, user_name, grade " +
+    "select distinct user_id, user_name, grade, grades.id as grades_id " +
     "from users_view " + 
-    "left join grades on users_view.user_id = grades.UserId and HomeworkId = " + homeworkid + 
+    "left join Grades on users_view.user_id = Grades.UserId and HomeworkId = " + homeworkid + 
     " where course_id = " + courseid ;
 
     //console.log("******",sqlStr);
@@ -37,22 +37,70 @@ module.exports = function (app) {
 
   });
 
-  app.post("/api/grades", function (req, res) {
+  app.post("/api/grades", async function (req, res) {
     console.log("post /api/grades", req.body)
     var gradesArray = req.body.grades;
+    var createOK = true;
+    var responseArray = [];
     for (var i=0; i<gradesArray.length; i++){
-      // Currently, this just inserts new data only. 
-      // TODO: Check if there is any existing data and then decide insert or update it. 
-      db.Grades.create(gradesArray[i])
-      .then(()=>{
-        console.log("create ok");
-        res.json({});
-      })
-      .catch(()=>{
-        res.status(500).json({"msg": "Database Error."});
-      })
+      console.log("gradesArray[i].grades_id", gradesArray[i].grades_id);
+      if (gradesArray[i].grades_id == 'null') {
+        // INSERT INTO DB if it's new entry.
+        //console.log("gradesArray[",i,"]",gradesArray[i]);
+        var tempJSON = {};
+        tempJSON.user_id = gradesArray[i].UserId;
+        tempJSON.user_name = gradesArray[i].student_name;
+        tempJSON.grade = gradesArray[i].grade;
+  
+        await db.Grades.create(gradesArray[i])
+        .then((dbResult)=>{
+          //console.log("create ok",dbResult);
+          console.log("create ok");
+          tempJSON.grades_id = dbResult.dataValues.id; // This is the new id assigned
+          responseArray.push(tempJSON);
+        })
+        .catch((error)=>{
+          console.log("create error", error);
+          createOK = false;
+        })
+      } else {
+        var tempJSON = {};
+        console.log("gradesArray[i]---", gradesArray[i]);
+        tempJSON.user_id = gradesArray[i].UserId;
+        tempJSON.user_name = gradesArray[i].student_name;
+        tempJSON.grade = gradesArray[i].grade;
+        tempJSON.grades_id = gradesArray[i].grades_id; 
+        responseArray.push(tempJSON);
+
+        // UPDATE DB if entry exists already.
+        sqlStr = "UPDATE Grades "  +
+        " SET grade =  " + gradesArray[i].grade +
+        " WHERE id = " + gradesArray[i].grades_id;
+       
+        await db.sequelize.query(sqlStr)
+        .then((dbResult)=>{
+          console.log("update ok");
+            // result = dbResult[0];
+            // console.log(result);
+        })
+        .catch((error)=>{
+          console.log("update error", error);
+          createOK = false;
+        })
+      }
+    } // End for loop
+
+
+    console.log("loopend");
+    if (createOK) {
+      console.log("responseArray",responseArray);
+      res.json(responseArray);
+    } else {
+      console.log("database error");
+      res.status(500).json({"msg": "Database Error."});
     }
   });
+
   app.get("/api/enroledstudents/:courseId", function (req, res) {
     var courseId;
     if (req.params.courseId) {
@@ -60,11 +108,11 @@ module.exports = function (app) {
     }
 
     sqlStr = 
-    "select users.id, users.name " +
-    "from users " +
-    "join enrolments on users.id = enrolments.userId " +
-    "where users.userType = 'student' " +
-    "and enrolments.courseId = "+ courseId + ";"
+    "select Users.id, Users.name " +
+    "from Users " +
+    "join Enrolments on Users.id = Enrolments.userId " +
+    "where Users.userType = 'student' " +
+    "and Enrolments.courseId = "+ courseId + ";"
     
     db.sequelize.query(sqlStr)
     .then((dbResult)=>{

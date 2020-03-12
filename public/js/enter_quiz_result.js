@@ -115,28 +115,14 @@ $(document).ready(function () {
             var urlEnroledStudents = "/api/grades/" + selectedCourseId + "/" + selectedHomeworkId;
             //console.log(urlEnroledStudents);
             $.get(urlEnroledStudents, function(data, status){
-                //console.log("student and score data",data);
-                $("#students_table tbody").html("");
-                numberOfEnroledStudents = data.length;
-
-                for (var i=0; i<data.length; i++){
-                    var tempHTML;
-                    var tempHTMLInputValue = ""; // This is to put the value in textbox                    
-                    if (data[i].grade != null){
-                        tempHTMLInputValue = 'value="' + data[i].grade + '"';
-                    }
-                    //console.log("data[i]", data[i]);
-                    tempHTML = '<tr><td>'+ data[i].user_name + '</td>' +
-                    '<td><input '+ tempHTMLInputValue + 'id="input' + i + '" data-studentid="' + data[i].user_id + '" class="input" type="text" placeholder="Enter student score">' +
-                    '</td></tr>';    
-                    $("#students_table tbody").append(tempHTML);
-                }
+                renderData(data);
             })
         }
     })
 
     
     $("#save").on("click", function(){
+        console.log("save");
         var gradesArray = [];
         //console.log(numberOfEnroledStudents);
         var selectedHomeworkId = $("#homework option:selected").val();
@@ -148,9 +134,11 @@ $(document).ready(function () {
         for (var i=0; i<numberOfEnroledStudents; i++){
             var tempJSON = {};
             tempJSON.UserId = $("#input" + i).attr("data-studentid");
-            tempJSON.grade = $("#input" + i).val()
+            tempJSON.student_name = $("#student_name" + i).text();
+            tempJSON.grade = $("#input" + i).val();
             tempJSON.HomeworkId = selectedHomeworkId;
-            //console.log(tempJSON.name, tempJSON.score);
+            tempJSON.grades_id = $("#input" + i).attr("data-gradesid");
+            console.log(tempJSON);
             if (tempJSON.grade != ""){
                 gradesArray.push(tempJSON);
             }
@@ -158,10 +146,35 @@ $(document).ready(function () {
         var outputJSON = {grades: gradesArray}
         console.log("outputJSON",outputJSON);
         // TODO: Use bulma modal to display message
-        $.post("/api/grades", outputJSON, function(data, status){
-            //console.log("post done",data);
-            alert("Scores are inserted.");
+        $.post("/api/grades", outputJSON)
+        .done(function(data, status){
+            console.log("post done",data);
+            renderData(data);
+            alert("Database has been updated.");
+        })
+        .fail(
+        function(data,status){
+            alert("Error ",data);
         })
     })
 
 });
+
+function renderData(data){
+    console.log("student and score data",data);
+    $("#students_table tbody").html("");
+    numberOfEnroledStudents = data.length;
+
+    for (var i=0; i<data.length; i++){
+        var tempHTML;
+        var tempHTMLInputValue = ""; // This is to put the value in textbox                    
+        if (data[i].grade != null){
+            tempHTMLInputValue = 'value="' + data[i].grade + '"';
+        }
+        //console.log("data[i]", data[i]);
+        tempHTML = '<tr><td id="student_name' + i + '">'+ data[i].user_name + '</td>' +
+        '<td><input '+ tempHTMLInputValue + 'id="input' + i + '" data-studentid="' + data[i].user_id + '" data-gradesid="' + data[i].grades_id + '" class="input" type="text" placeholder="Enter student score">' +
+        '</td></tr>';    
+        $("#students_table tbody").append(tempHTML);
+    }
+}
