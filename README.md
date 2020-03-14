@@ -21,4 +21,12 @@ staff can:
 2. view student details 
 3. Message students in bulk 
 
+to login to student: 
+username: student@test.com
+password: 123
+
+to login to staff: 
+username: teacher@test.com
+password: 123
+
 
