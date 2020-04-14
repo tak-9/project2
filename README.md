@@ -21,6 +21,11 @@ staff can:
 2. view student details 
 3. Message students in bulk 
 
+
+Deployed Application can be accessed at this URL. 
+https://proficiency.herokuapp.com/
+
+
 to login student
 username: student@test.com 
 password: 123 
